@@ -1,6 +1,8 @@
-package KeThua.ThucHanh.HeCacDoiTuongHinhHoc;
+package AdvanceedObjectOrientedDesign.BaiTap.Resizeable.shapes;
 
-public class Circle extends Shape {
+import AdvanceedObjectOrientedDesign.BaiTap.Resizeable.Resizeable;
+
+public class Circle extends Shape implements Resizeable {
     private double radius = 1.0;
 
     public Circle() {
@@ -36,5 +38,10 @@ public class Circle extends Shape {
     public String toString() {
         String fill = isFilled() ? "filled" : "not filled";
         return "A Circle with radius=" + this.getRadius() + ", which is a subclass of " + super.toString();
+    }
+
+    @Override
+    public void resize(double percent) {
+        System.out.println(this.getArea() + this.getArea() * (percent / 100));
     }
 }

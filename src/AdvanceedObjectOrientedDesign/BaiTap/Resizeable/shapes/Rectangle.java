@@ -1,6 +1,8 @@
-package KeThua.ThucHanh.HeCacDoiTuongHinhHoc;
+package AdvanceedObjectOrientedDesign.BaiTap.Resizeable.shapes;
 
-public class Rectangle extends Shape {
+import AdvanceedObjectOrientedDesign.BaiTap.Resizeable.Resizeable;
+
+public class Rectangle extends Shape implements Resizeable {
     private double width = 1.0;
     private double height = 1.0;
 
@@ -47,5 +49,10 @@ public class Rectangle extends Shape {
     public String toString() {
         String fill = isFilled() ? "filled" : "not filled";
         return "A Rectangle with width=" + this.getWidth() + " and length=" + this.getHeight() + ", which is a subclass of " + super.toString();
+    }
+
+    @Override
+    public void resize(double percent) {
+        System.out.println(this.getArea() + this.getArea() * (percent / 100));
     }
 }

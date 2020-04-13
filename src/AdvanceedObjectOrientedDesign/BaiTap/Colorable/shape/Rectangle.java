@@ -1,4 +1,4 @@
-package KeThua.ThucHanh.HeCacDoiTuongHinhHoc;
+package AdvanceedObjectOrientedDesign.BaiTap.Colorable.shape;
 
 public class Rectangle extends Shape {
     private double width = 1.0;

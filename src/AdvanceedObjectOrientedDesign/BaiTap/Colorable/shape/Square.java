@@ -1,6 +1,8 @@
-package KeThua.ThucHanh.HeCacDoiTuongHinhHoc;
+package AdvanceedObjectOrientedDesign.BaiTap.Colorable.shape;
 
-public class Square extends Rectangle {
+import AdvanceedObjectOrientedDesign.BaiTap.Colorable.Colorable;
+
+public class Square extends Rectangle implements Colorable {
     private double side = 1.0;
 
     public Square() {
@@ -39,5 +41,10 @@ public class Square extends Rectangle {
     public String toString() {
         String fill = isFilled() ? "filled" : "not filled";
         return "A Square with side=" + this.getSide() + ", which is a subclass of " + super.toString();
+    }
+
+    @Override
+    public void howToColor() {
+        System.out.println("Color all four sides.");
     }
 }

@@ -1,4 +1,4 @@
-package KeThua.ThucHanh.HeCacDoiTuongHinhHoc;
+package AdvanceedObjectOrientedDesign.BaiTap.Colorable.shape;
 
 public class Circle extends Shape {
     private double radius = 1.0;

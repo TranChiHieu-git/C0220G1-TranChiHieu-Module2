@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class ThemPhanTuVaoMang {
     public static void main(String[] args) {
-        int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        int arr[] = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         int index, value;
         Scanner input = new Scanner(System.in);
         System.out.print("Nhap vao gia tri muon them vao mang: ");
@@ -13,10 +13,18 @@ public class ThemPhanTuVaoMang {
             System.out.print("Nhap vao vi tri muon them vao mang: ");
             index = input.nextInt();
         } while (index < 0 && index > arr.length);
-        for (int i = arr.length - 1; i >= index; i--) {
-            arr[i] = arr[i - 1];
+        int[] tempArr = new int[arr.length + 1];
+        for (int i = 0; i < tempArr.length - 1; i++) {
+            tempArr[i] = arr[i];
         }
-        arr[index] = value;
+
+        for (int i = tempArr.length - 1; i >= index; i--) {
+            tempArr[i] = tempArr[i - 1];
+        }
+        tempArr[index] = value;
+        arr = new int[11];
+        arr = tempArr;
+        tempArr = null;
         for (int i = 0; i < arr.length; i++) {
             System.out.print(arr[i] + " ");
         }
