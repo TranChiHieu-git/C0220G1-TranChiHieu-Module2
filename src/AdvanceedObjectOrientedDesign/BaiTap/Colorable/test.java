@@ -12,12 +12,13 @@ public class test {
         shapes[1] = new Rectangle(2.5, 5.4, "blue", true);
         shapes[2] = new Square(4.0, "black", true);
         for (Shape shape : shapes) {
-            if (shape instanceof Square) {
+            if (shape instanceof Circle) {
+                System.out.println("circle: " + ((Circle) shape).getArea());
+            } else if (shape instanceof Square) {
+                System.out.println("square: " + ((Square) shape).getArea());
                 ((Square) shape).howToColor();
-            } else if (shape instanceof Circle) {
-                System.out.println(((Circle) shape).getArea());
             } else if (shape instanceof Rectangle) {
-                System.out.println(((Rectangle) shape).getArea());
+                System.out.println("rectengle:" + ((Rectangle) shape).getArea());
             }
         }
     }
