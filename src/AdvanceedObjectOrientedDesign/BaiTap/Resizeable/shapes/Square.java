@@ -38,6 +38,11 @@ public class Square extends Rectangle implements Resizeable {
     }
 
     @Override
+    public double getArea() {
+        return this.getSide() * this.getSide();
+    }
+
+    @Override
     public String toString() {
         String fill = isFilled() ? "filled" : "not filled";
         return "A Square with side=" + this.getSide() + ", which is a subclass of " + super.toString();
@@ -45,6 +50,8 @@ public class Square extends Rectangle implements Resizeable {
 
     @Override
     public void resize(double percent) {
-        System.out.println(this.getArea() + this.getArea() * (percent / 100));
+        System.out.println("Square area before resize: " + this.getArea());
+        this.setSide(this.getSide() + (this.getSide() * (percent / 100)));
+        System.out.println("Square area after resize: " + this.getArea());
     }
 }

@@ -3,7 +3,7 @@ package AdvanceedObjectOrientedDesign.BaiTap.Resizeable.shapes;
 import AdvanceedObjectOrientedDesign.BaiTap.Resizeable.Resizeable;
 
 public class Circle extends Shape implements Resizeable {
-    private double radius = 1.0;
+    private double radius = 0.0;
 
     public Circle() {
 
@@ -42,6 +42,8 @@ public class Circle extends Shape implements Resizeable {
 
     @Override
     public void resize(double percent) {
-        System.out.println(this.getArea() + this.getArea() * (percent / 100));
+        System.out.println("Circle area before resize: " + this.getArea());
+        this.setRadius(this.getRadius() + (this.getRadius() * (percent / 100)));
+        System.out.println("Circle area after resize: " + this.getArea());
     }
 }
