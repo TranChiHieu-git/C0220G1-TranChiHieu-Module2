@@ -1,13 +1,11 @@
 package CauTrucDuLieuVaGiaiThuatCoBan.BaiTap.ArrayList;
 
 import java.util.Arrays;
-import java.util.Objects;
 
 public class MyList<E> {
     private int size = 0;
     static final int DEFAULT_CAPACITY = 10;
     Object elements[];
-    Object v[];
 
     MyList() {
         this.elements = new Object[DEFAULT_CAPACITY];
@@ -16,7 +14,6 @@ public class MyList<E> {
     MyList(int capacity) {
         this.size = capacity;
         this.elements = new Object[this.size];
-        this.v = new Object[this.size];
     }
 
     public void print() {
@@ -60,9 +57,10 @@ public class MyList<E> {
         this.size++;
     }
 
-    public E clone() {
-        this.v = Arrays.copyOf(this.elements, this.elements.length);
-        return (E) v;
+    public MyList<E> clone() {
+        MyList<E> v = new MyList<>(this.getSize());
+        v.elements = Arrays.copyOf(this.elements, this.getSize());
+        return v;
     }
 
     public void add(int index, E element) {
@@ -99,7 +97,7 @@ public class MyList<E> {
     }
 
     public void clear() {
-        this.elements = null;
+        this.elements = new Object[DEFAULT_CAPACITY];
         this.size = 0;
     }
 }
