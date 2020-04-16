@@ -1,7 +1,5 @@
 package CauTrucDuLieuVaGiaiThuatCoBan.BaiTap.ArrayList;
 
-import java.util.ArrayList;
-
 public class MyListTest {
     public static void main(String[] args) {
         MyList<Integer> myList = new MyList<>();

@@ -28,6 +28,6 @@ public class Cylinder extends Circle {
     }
 
     public String toString() {
-        return "A Cylinder with height=" + this.getHeight() + " and volumn=" + this.getVolume() + ", which is a subclass of " + super.toString();
+        return "A CylinderTest.Cylinder with height=" + this.getHeight() + " and volumn=" + this.getVolume() + ", which is a subclass of " + super.toString();
     }
 }
