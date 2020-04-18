@@ -1,8 +1,8 @@
 package AdvanceedObjectOrientedDesign.BaiTap.Resizeable.shapes;
 
-import AdvanceedObjectOrientedDesign.BaiTap.Resizeable.Resizeable;
 
-public class Square extends Rectangle implements Resizeable {
+
+public class Square extends Rectangle {
     private double side = 1.0;
 
     public Square() {

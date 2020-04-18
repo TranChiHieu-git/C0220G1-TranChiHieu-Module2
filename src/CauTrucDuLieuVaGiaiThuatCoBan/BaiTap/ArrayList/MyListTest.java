@@ -24,11 +24,19 @@ public class MyListTest {
         myList.print();
         //test clone
         System.out.println("clone mang cu thanh mang moi:");
-        System.out.println("id cua mang myList: " + myList);
         MyList<Integer> cloneList = myList.clone();
         System.out.println("Phan tu cua mang clonelist:");
         cloneList.print();
-        System.out.println("id cua mang clonelist: " + cloneList);
+        //remove clonelist
+        System.out.println("cloneList sau khi xoa: ");
+        cloneList.remove(2);
+        cloneList.add(10);
+        cloneList.add(2, 100);
+        cloneList.print();
+        //remove
+        System.out.println("Linked list sau khi xoa: ");
+        myList.remove(1);
+        myList.print();
         //test contains
         System.out.println("kiem tra co x trong list khong:");
         System.out.println(myList.contains(5));

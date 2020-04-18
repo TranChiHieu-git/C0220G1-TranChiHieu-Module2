@@ -58,8 +58,9 @@ public class MyList<E> {
     }
 
     public MyList<E> clone() {
-        MyList<E> v = new MyList<>(this.getSize());
-        v.elements = Arrays.copyOf(this.elements, this.getSize());
+        MyList<E> v = new MyList<>();
+        v.elements = Arrays.copyOf(this.elements, DEFAULT_CAPACITY);
+        v.size = this.size;
         return v;
     }
 

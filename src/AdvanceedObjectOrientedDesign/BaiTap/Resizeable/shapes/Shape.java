@@ -1,6 +1,8 @@
 package AdvanceedObjectOrientedDesign.BaiTap.Resizeable.shapes;
 
-public class Shape {
+import AdvanceedObjectOrientedDesign.BaiTap.Resizeable.Resizeable;
+
+public class Shape implements Resizeable {
     private String color = "red";
     private boolean filled = true;
 
@@ -32,5 +34,10 @@ public class Shape {
     public String toString() {
         String fill = isFilled() ? "filled" : "not filled";
         return "A Shape with color of " + getColor() + " and " + fill;
+    }
+
+    @Override
+    public void resize(double percent) {
+
     }
 }

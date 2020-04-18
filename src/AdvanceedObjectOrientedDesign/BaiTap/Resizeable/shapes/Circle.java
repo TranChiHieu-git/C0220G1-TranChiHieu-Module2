@@ -1,8 +1,6 @@
 package AdvanceedObjectOrientedDesign.BaiTap.Resizeable.shapes;
 
-import AdvanceedObjectOrientedDesign.BaiTap.Resizeable.Resizeable;
-
-public class Circle extends Shape implements Resizeable {
+public class Circle extends Shape{
     private double radius = 0.0;
 
     public Circle() {

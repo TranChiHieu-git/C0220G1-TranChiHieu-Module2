@@ -2,6 +2,11 @@ package Refactoring.BaiTap.Refactoring;
 
 public class TennisGame {
 
+    public static final int LOVE = 0;
+    public static final int FIFTEEN_ALL = 1;
+    public static final int THIRTY_ALL = 2;
+    public static final int FORTY_ALL = 3;
+
     public static String getScore(String player1Name, String player2Name, int play1Score, int play2Score) {
         String score = "";
         boolean isSameScore = play1Score == play2Score;
@@ -24,16 +29,16 @@ public class TennisGame {
                 tempScore = play2Score;
             }
             switch (tempScore) {
-                case 0:
+                case LOVE:
                     score += "Love";
                     break;
-                case 1:
+                case FIFTEEN_ALL:
                     score += "Fifteen";
                     break;
-                case 2:
+                case THIRTY_ALL:
                     score += "Thirty";
                     break;
-                case 3:
+                case FORTY_ALL:
                     score += "Forty";
                     break;
             }
@@ -54,22 +59,21 @@ public class TennisGame {
     public static String getSameScore(int play1Score) {
         String score;
         switch (play1Score) {
-            case 0:
+            case LOVE:
                 score = "Love-All";
                 break;
-            case 1:
+            case FIFTEEN_ALL:
                 score = "Fifteen-All";
                 break;
-            case 2:
+            case THIRTY_ALL:
                 score = "Thirty-All";
                 break;
-            case 3:
+            case FORTY_ALL:
                 score = "Forty-All";
                 break;
             default:
                 score = "Deuce";
                 break;
-
         }
         return score;
     }
