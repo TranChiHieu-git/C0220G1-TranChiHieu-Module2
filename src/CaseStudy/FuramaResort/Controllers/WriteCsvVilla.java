@@ -11,7 +11,7 @@ public class WriteCsvVilla {
                                          String poolArea, String numberOfFloors)
             throws IOException {
 
-        FileWriter fileVilla = new FileWriter("E:/CodeGym/Module2/src/CaseStudy/FuramaResort/Data/Villa.csv", true);
+        FileWriter fileVilla = new FileWriter("C:\\codegym\\CodeGym\\Module2\\C0220G1-TranChiHieu-Module2\\src\\CaseStudy\\FuramaResort\\Data\\Villa.csv", true);
         fileVilla.append(id);
         fileVilla.append(DAU_PHAY);
         fileVilla.append(nameServices);
@@ -29,6 +29,7 @@ public class WriteCsvVilla {
         fileVilla.append(poolArea);
         fileVilla.append(DAU_PHAY);
         fileVilla.append(numberOfFloors);
+        fileVilla.append(DAU_PHAY);
         fileVilla.append(DONG_MOI);
         fileVilla.close();
     }

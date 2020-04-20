@@ -12,7 +12,7 @@ public class WriteCsvHouse {
                                          String numberOfFloors)
             throws IOException {
 
-        FileWriter fileHouse = new FileWriter("E:/CodeGym/Module2/src/CaseStudy/FuramaResort/Data/House.csv", true);
+        FileWriter fileHouse = new FileWriter("C:\\codegym\\CodeGym\\Module2\\C0220G1-TranChiHieu-Module2\\src\\CaseStudy\\FuramaResort\\Data\\House.csv", true);
         fileHouse.append(id);
         fileHouse.append(DAU_PHAY);
         fileHouse.append(nameServices);

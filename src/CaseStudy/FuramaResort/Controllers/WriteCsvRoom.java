@@ -11,7 +11,7 @@ public class WriteCsvRoom {
                                         String maxNumberOfPeople, String typeOfRent)
             throws IOException {
 
-        FileWriter fileVilla = new FileWriter("E:/CodeGym/Module2/src/CaseStudy/FuramaResort/Data/Room.csv", true);
+        FileWriter fileVilla = new FileWriter("C:\\codegym\\CodeGym\\Module2\\C0220G1-TranChiHieu-Module2\\src\\CaseStudy\\FuramaResort\\Data\\Room.csv", true);
         fileVilla.append(id);
         fileVilla.append(DAU_PHAY);
         fileVilla.append(nameServices);

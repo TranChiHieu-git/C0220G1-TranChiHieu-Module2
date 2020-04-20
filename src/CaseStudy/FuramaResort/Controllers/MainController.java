@@ -1,6 +1,10 @@
 package CaseStudy.FuramaResort.Controllers;
 
+import CaseStudy.FuramaResort.Models.Villa;
+
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MainController {
@@ -187,7 +191,7 @@ public class MainController {
             choose = scanner.nextLine();
             switch (choose) {
                 case "1":
-
+                    this.showAllVilla();
                     this.showServices();
                     break;
                 case "2":
@@ -218,6 +222,10 @@ public class MainController {
                     break;
             }
         } while (flag);
+    }
+
+    public void showAllVilla() throws IOException {
+        ReadCsvVilla readCsvVilla =new ReadCsvVilla();
     }
 }
 
