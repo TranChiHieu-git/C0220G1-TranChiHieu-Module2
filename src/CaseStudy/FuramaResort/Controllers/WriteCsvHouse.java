@@ -1,34 +1,37 @@
 package CaseStudy.FuramaResort.Controllers;
 
+import CaseStudy.FuramaResort.Models.House;
+
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class WriteCsvHouse {
     private static final String DAU_PHAY = ",";
     private static final String DONG_MOI = "\n";
 
-    public static void WriteCsvHouseFile(String id, String nameServices, String areaUsed, String rental,
-                                         String maxNumberOfPeople, String typeOfRent, String roomStandard,
-                                         String numberOfFloors)
+    public static void WriteCsvHouseFile(ArrayList<House> listHouse)
             throws IOException {
-
         FileWriter fileHouse = new FileWriter("C:\\codegym\\CodeGym\\Module2\\C0220G1-TranChiHieu-Module2\\src\\CaseStudy\\FuramaResort\\Data\\House.csv", true);
-        fileHouse.append(id);
-        fileHouse.append(DAU_PHAY);
-        fileHouse.append(nameServices);
-        fileHouse.append(DAU_PHAY);
-        fileHouse.append(areaUsed);
-        fileHouse.append(DAU_PHAY);
-        fileHouse.append(rental);
-        fileHouse.append(DAU_PHAY);
-        fileHouse.append(maxNumberOfPeople);
-        fileHouse.append(DAU_PHAY);
-        fileHouse.append(typeOfRent);
-        fileHouse.append(DAU_PHAY);
-        fileHouse.append(roomStandard);
-        fileHouse.append(DAU_PHAY);
-        fileHouse.append(numberOfFloors);
-        fileHouse.append(DONG_MOI);
-        fileHouse.close();
+        for (House house : listHouse) {
+            fileHouse.append(house.getId());
+            fileHouse.append(DAU_PHAY);
+            fileHouse.append(house.getNameServices());
+            fileHouse.append(DAU_PHAY);
+            fileHouse.append(String.valueOf(house.getAreaUsed()));
+            fileHouse.append(DAU_PHAY);
+            fileHouse.append(String.valueOf(house.getRental()));
+            fileHouse.append(DAU_PHAY);
+            fileHouse.append(String.valueOf(house.getMaxNumberOfPeople()));
+            fileHouse.append(DAU_PHAY);
+            fileHouse.append(String.valueOf(house.getTypeOfRent()));
+            fileHouse.append(DAU_PHAY);
+            fileHouse.append(house.getRoomStandard());
+            fileHouse.append(DAU_PHAY);
+            fileHouse.append(String.valueOf(house.getNumberOfFloors()));
+            fileHouse.append(DONG_MOI);
+            fileHouse.close();
+        }
+
     }
 }

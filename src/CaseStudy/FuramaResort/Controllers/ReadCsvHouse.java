@@ -1,6 +1,6 @@
 package CaseStudy.FuramaResort.Controllers;
 
-import CaseStudy.FuramaResort.Models.Villa;
+import CaseStudy.FuramaResort.Models.House;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -9,47 +9,43 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.TreeSet;
 
-
-public class ReadCsvVilla {
+public class ReadCsvHouse {
     BufferedReader fileReader = new BufferedReader(new FileReader("C:\\codegym\\CodeGym\\Module2\\" +
-            "C0220G1-TranChiHieu-Module2\\src\\CaseStudy\\FuramaResort\\Data\\Villa.csv"));
-    ArrayList<Villa> listVilla = new ArrayList<>();
-    TreeSet<String> listVillaNotDuplicate =new TreeSet<>();
+            "C0220G1-TranChiHieu-Module2\\src\\CaseStudy\\FuramaResort\\Data\\House.csv"));
+    ArrayList<House> listHouse = new ArrayList<>();
+    TreeSet<String> listHouseNotDuplicate = new TreeSet<>();
 
 
-    public ReadCsvVilla() throws FileNotFoundException {
+    public ReadCsvHouse() throws FileNotFoundException {
     }
 
-    public ArrayList<Villa> readCsvVilla() throws IOException {
+    public ArrayList<House> readCsvHouse() throws IOException {
         String line;
         while ((line = fileReader.readLine()) != null) {
             String[] splitData = line.split(",");
-
-            Villa villa = new Villa(splitData[0],
+            House house = new House(splitData[0],
                     splitData[1],
                     Double.parseDouble(splitData[2]),
                     Double.parseDouble(splitData[3]),
                     Integer.parseInt(splitData[4]),
                     splitData[5],
                     splitData[6],
-                    Double.parseDouble(splitData[7]),
-                    Integer.parseInt(splitData[8]
+                    Integer.parseInt(splitData[7]
                     ));
-            listVilla.add(villa);
+            listHouse.add(house);
         }
-        for (Villa vl : listVilla) {
-            System.out.println(vl.showInfor());
+        for (House hs : listHouse) {
+            System.out.println(hs.showInfor());
             System.out.println("--------------------------------------------------");
         }
-        return listVilla;
+        return listHouse;
     }
-    public TreeSet<String> readCsvVillaNotDuplicate() throws IOException {
+    public TreeSet<String> readCsvHouseNotDuplicate() throws IOException {
         String line;
         while ((line = fileReader.readLine()) != null) {
             String[] splitData = line.split(",");
-            listVillaNotDuplicate.add(splitData[1]);
+            listHouseNotDuplicate.add(splitData[1]);
         }
-        return listVillaNotDuplicate;
+        return listHouseNotDuplicate;
     }
 }
-

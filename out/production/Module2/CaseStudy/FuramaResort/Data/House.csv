@@ -1,1 +1,5 @@
-002,House,700,300,4,week,3sao,2
+HO01-0000,Bighouse,500.0,300.0,6,month,Tieu chuan,2
+HO02-0000,Normalhouse,500.0,300.0,6,month,Tieu chuan,2
+HO03-0000,Bighouse,1500.0,300.0,6,month,Tieu chuan,2
+HO04-0000,Smallhouse,500.0,300.0,6,month,Tieu chuan,2
+HO99-1234,Housepro,500.0,500.0,5.0,year,Normal,5

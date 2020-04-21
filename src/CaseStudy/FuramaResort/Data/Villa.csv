@@ -1,2 +1,7 @@
-001,villa1,10,500,1,day,5star,200,4,
-002,villa2,11,555,111,week,4star,100,2,
+VL01-0000,Smallvilla,1000.0,500.0,10,day,Cao cap,100.0,4
+VL02-0000,Bigvilla,1000.0,500.0,10,day,Cao cap,100.0,4
+VL03-0000,Smallvilla,1000.0,500.0,10,day,Cao cap,100.0,4
+VL04-0000,Normalvilla,1000.0,500.0,10,day,Cao cap,100.0,4
+VL99-9999,Villa,1000.0,100.0,5,day,VIP,100.0,5
+VL01-0000,Smallvilla,1000.0,500.0,10.0,day,Cao cap,4
+VL75-9512,Villabig,5014.02,400.0,8.0,day,Normal,4

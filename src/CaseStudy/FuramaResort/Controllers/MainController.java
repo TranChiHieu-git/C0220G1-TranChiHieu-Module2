@@ -1,19 +1,27 @@
 package CaseStudy.FuramaResort.Controllers;
 
+import CaseStudy.FuramaResort.Models.House;
+import CaseStudy.FuramaResort.Models.Room;
 import CaseStudy.FuramaResort.Models.Villa;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.TreeSet;
 
 public class MainController {
     Scanner scanner = new Scanner(System.in);
-    WriteCsvVilla writeCsvVilla = new WriteCsvVilla();
-    WriteCsvHouse writeCsvHouse = new WriteCsvHouse();
-    WriteCsvRoom writeCsvRoom = new WriteCsvRoom();
+    ArrayList<Room> listRoom = new ArrayList<>();
+    ArrayList<Villa> listVilla = new ArrayList<>();
+    ArrayList<House> listHouse = new ArrayList<>();
+    TreeSet<String> listRoomNotDuplicate = new TreeSet<>();
+    TreeSet<String> listHouseNotDuplicate = new TreeSet<>();
+    TreeSet<String> listVillaNotDuplicate = new TreeSet<>();
+    ReadCsvVilla readCsvVilla = new ReadCsvVilla();
+    ReadCsvHouse readCsvHouse = new ReadCsvHouse();
+    ReadCsvRoom readCsvRoom = new ReadCsvRoom();
 
-    public MainController() {
+    public MainController() throws IOException {
     }
 
     public void displayMainMenu() throws IOException {
@@ -45,7 +53,7 @@ public class MainController {
                     this.displayMainMenu();
                     break;
                 case "4":
-                    System.out.println(choose);
+                    this.addNewCustomer();
                     this.displayMainMenu();
                     break;
                 case "5":
@@ -74,6 +82,10 @@ public class MainController {
                     break;
             }
         } while (flag);
+    }
+
+    public void addNewCustomer() {
+
     }
 
     public void addNewServices() throws IOException {
@@ -116,63 +128,54 @@ public class MainController {
     }
 
     public void addNewVilla() throws IOException {
-        System.out.print("Nhap ma dich vu: ");
-        String id = scanner.nextLine();
-        System.out.print("Nhap ten dich vu: ");
-        String nameServices = scanner.nextLine();
-        System.out.print("Nhap dien tich su dung: ");
-        String areaUsed = scanner.nextLine();
-        System.out.print("Nhap gia thue: ");
-        String rental = scanner.nextLine();
-        System.out.print("Nhap so nguoi toi da: ");
-        String maxNumberOfPeople = scanner.nextLine();
-        System.out.print("Nhap loai thue: ");
-        String typeOfRent = scanner.nextLine();
-        System.out.print("nhap tieu chuan phong: ");
-        String roomStandard = scanner.nextLine();
-        System.out.print("Nhap dien tich ho boi: ");
-        String poolArea = scanner.nextLine();
-        System.out.print("Nhap so tang: ");
-        String numberOfFloors = scanner.nextLine();
-        writeCsvVilla.writeCsvVillaFile(id, nameServices, areaUsed, rental, maxNumberOfPeople, typeOfRent,
-                roomStandard, poolArea, numberOfFloors);
+
+        int i = 1;
+        String id = inputId(i);
+        String nameServices = inputNameSerVices();
+        String areaUsed = inputAreaUsed();
+        String rental = inputRental();
+        String maxNumberOfPeople = inputMaxNumberOfPeople();
+        String typeOfRent = inputTypeOfRent();
+        String roomStandard = inputRoomStandard();
+        String poolArea = inputAreaPool();
+        String numberOfFloors = inputNumberOfFloor();
+        Villa villa = new Villa(id, nameServices, Double.parseDouble(areaUsed), Double.parseDouble(rental),
+                Integer.parseInt(maxNumberOfPeople), typeOfRent,
+                roomStandard, Double.parseDouble(poolArea), Integer.parseInt(numberOfFloors));
+        listVilla.add(villa);
+        WriteCsvVilla.writeCsvVillaFile(listVilla);
+
     }
 
     public void addNewHouse() throws IOException {
-        System.out.print("Nhap ma dich vu: ");
-        String id = scanner.nextLine();
-        System.out.print("Nhap ten dich vu: ");
-        String nameServices = scanner.nextLine();
-        System.out.print("Nhap dien tich su dung: ");
-        String areaUsed = scanner.nextLine();
-        System.out.print("Nhap gia thue: ");
-        String rental = scanner.nextLine();
-        System.out.print("Nhap so nguoi toi da: ");
-        String maxNumberOfPeople = scanner.nextLine();
-        System.out.print("Nhap loai thue: ");
-        String typeOfRent = scanner.nextLine();
-        System.out.print("nhap tieu chuan phong: ");
-        String roomStandard = scanner.nextLine();
-        System.out.print("Nhap so tang: ");
-        String numberOfFloors = scanner.nextLine();
-        writeCsvHouse.WriteCsvHouseFile(id, nameServices, areaUsed, rental, maxNumberOfPeople, typeOfRent,
-                roomStandard, numberOfFloors);
+        int i = 2;
+        String id = inputId(i);
+        String nameServices = inputNameSerVices();
+        String areaUsed = inputAreaUsed();
+        String rental = inputRental();
+        String maxNumberOfPeople = inputMaxNumberOfPeople();
+        String typeOfRent = inputTypeOfRent();
+        String roomStandard = inputRoomStandard();
+        String numberOfFloors = inputNumberOfFloor();
+        House house = new House(id, nameServices, Double.parseDouble(areaUsed), Double.parseDouble(rental),
+                Integer.parseInt(maxNumberOfPeople), typeOfRent,
+                roomStandard, Integer.parseInt(numberOfFloors));
+        listHouse.add(house);
+        WriteCsvHouse.WriteCsvHouseFile(listHouse);
     }
 
     public void addNewRoom() throws IOException {
-        System.out.print("Nhap ma dich vu: ");
-        String id = scanner.nextLine();
-        System.out.print("Nhap ten dich vu: ");
-        String nameServices = scanner.nextLine();
-        System.out.print("Nhap dien tich su dung: ");
-        String areaUsed = scanner.nextLine();
-        System.out.print("Nhap gia thue: ");
-        String rental = scanner.nextLine();
-        System.out.print("Nhap so nguoi toi da: ");
-        String maxNumberOfPeople = scanner.nextLine();
-        System.out.print("Nhap loai thue: ");
-        String typeOfRent = scanner.nextLine();
-        writeCsvRoom.writeCsvRoomFile(id, nameServices, areaUsed, rental, maxNumberOfPeople, typeOfRent);
+        int i = 3;
+        String id = inputId(i);
+        String nameServices = inputNameSerVices();
+        String areaUsed = inputAreaUsed();
+        String rental = inputRental();
+        String maxNumberOfPeople = inputMaxNumberOfPeople();
+        String typeOfRent = inputTypeOfRent();
+        Room room = new Room(id, nameServices, Double.parseDouble(areaUsed), Double.parseDouble(rental),
+                Integer.parseInt(maxNumberOfPeople), typeOfRent);
+        listRoom.add(room);
+        WriteCsvRoom.writeCsvRoomFile(listRoom);
     }
 
     public void showServices() throws IOException {
@@ -195,18 +198,23 @@ public class MainController {
                     this.showServices();
                     break;
                 case "2":
+                    this.showAllHouse();
                     this.showServices();
                     break;
                 case "3":
+                    this.showAllRoom();
                     this.showServices();
                     break;
                 case "4":
+                    this.showAllNameVillaNotDuplicate();
                     this.showServices();
                     break;
                 case "5":
+                    this.showAllNameHouseNotDuplicate();
                     this.showServices();
                     break;
                 case "6":
+                    this.showAllNameRoomNotDuplicate();
                     this.showServices();
                     break;
                 case "7":
@@ -225,7 +233,225 @@ public class MainController {
     }
 
     public void showAllVilla() throws IOException {
-        ReadCsvVilla readCsvVilla =new ReadCsvVilla();
+        listVilla = readCsvVilla.readCsvVilla();
+        for (Villa villa : listVilla) {
+            System.out.println("----------------------------------------------------------------------");
+            System.out.println(villa.showInfor());
+            System.out.println("----------------------------------------------------------------------");
+        }
+    }
+
+    public void showAllHouse() throws IOException {
+        listHouse = readCsvHouse.readCsvHouse();
+        for (House house : listHouse) {
+            System.out.println("----------------------------------------------------------------------");
+            System.out.println(house.showInfor());
+            System.out.println("----------------------------------------------------------------------");
+        }
+    }
+
+    public void showAllRoom() throws IOException {
+        listRoom = readCsvRoom.readCsvRoom();
+        for (Room room : listRoom) {
+            System.out.println("----------------------------------------------------------------------");
+            System.out.println(room.showInfor());
+            System.out.println("----------------------------------------------------------------------");
+        }
+    }
+
+    public String inputId(int i) {
+        boolean flag = true;
+        String id;
+        do {
+            System.out.print("Nhap vao id: ");
+            id = scanner.nextLine();
+            String patt;
+            if (i == 1) {
+                patt = "(VL)+[0-9]{2}+-[0-9]{4}";
+            } else if (i == 2) {
+                patt = "(HO)+[0-9]{2}+-[0-9]{4}";
+            } else {
+                patt = "(RO)+[0-9]{2}+-[0-9]{4}";
+            }
+            boolean math = id.matches(patt);
+            if (math) {
+                flag = false;
+            } else {
+                System.out.println("Gia tri nhap vao khong chinh xac. Vui long nhap lai.");
+            }
+        } while (flag);
+        return id;
+    }
+
+    public String inputNameSerVices() {
+        boolean flag = true;
+        String nameSerVices;
+        do {
+            System.out.print("Nhap vao ten dich vu: ");
+            nameSerVices = scanner.nextLine();
+            String patt = "^[A-Z]+[a-z0-9]{1,}";
+            boolean math = nameSerVices.matches(patt);
+            if (math) {
+                flag = false;
+            } else {
+                System.out.println("Gia tri nhap vao khong chinh xac. Vui long nhap lai.");
+            }
+        } while (flag);
+        return nameSerVices;
+    }
+
+    public String inputAreaUsed() {
+        boolean flag = true;
+        String areaUsed;
+        do {
+            System.out.print("Nhap vao dien tich su dung: ");
+            areaUsed = scanner.nextLine();
+            String patt = "^[1-9]+(\\d){1,}+\\.+(\\d){1,}";
+            boolean math = areaUsed.matches(patt);
+            if (math && (Double.valueOf(areaUsed) > 30.0)) {
+                flag = false;
+            } else {
+                System.out.println("Gia tri nhap vao khong chinh xac. Vui long nhap lai.");
+            }
+
+        } while (flag);
+        return areaUsed;
+    }
+
+    public String inputAreaPool() {
+        boolean flag = true;
+        String areaPool;
+        do {
+            System.out.print("Nhap vao dien tich ho boi: ");
+            areaPool = scanner.nextLine();
+            String patt = "^[1-9]+(\\d){1,}+\\.+(\\d){1,}";
+            boolean math = areaPool.matches(patt);
+            if (math && (Double.valueOf(areaPool) > 30.0)) {
+                flag = false;
+            } else {
+                System.out.println("Gia tri nhap vao khong chinh xac. Vui long nhap lai.");
+            }
+
+        } while (flag);
+        return areaPool;
+    }
+
+    public String inputRental() {
+        boolean flag = true;
+        String rental;
+        do {
+            System.out.print("Nhap vao gia thue: ");
+            rental = scanner.nextLine();
+            String patt = "^[0-9]+(\\d){0,}+\\.+(\\d){1,}";
+            boolean math = rental.matches(patt);
+            if (math && (Double.valueOf(rental) > 0.0)) {
+                flag = false;
+            } else {
+                System.out.println("Gia tri nhap vao khong chinh xac. Vui long nhap lai.");
+            }
+
+        } while (flag);
+        return rental;
+    }
+
+    public String inputMaxNumberOfPeople() {
+        boolean flag = true;
+        String maxNumberOfPeople;
+        do {
+            System.out.print("Nhap vao so nguoi toi da: ");
+            maxNumberOfPeople = scanner.nextLine();
+            String patt = "(\\d){1,2}";
+            boolean math = maxNumberOfPeople.matches(patt);
+            if (math && ((Integer.parseInt(maxNumberOfPeople) > 0) && (Integer.parseInt(maxNumberOfPeople) < 20))) {
+                flag = false;
+            } else {
+                System.out.println("Gia tri nhap vao khong chinh xac. Vui long nhap lai.");
+            }
+
+        } while (flag);
+        return maxNumberOfPeople;
+    }
+
+    public String inputNumberOfFloor() {
+        boolean flag = true;
+        String numberOfFloor;
+        do {
+            System.out.print("Nhap vao so tang: ");
+            numberOfFloor = scanner.nextLine();
+            String patt = "(\\d){1,2}";
+            boolean math = numberOfFloor.matches(patt);
+            if (math && (Integer.parseInt(numberOfFloor) > 0)) {
+                flag = false;
+            } else {
+                System.out.println("Gia tri nhap vao khong chinh xac. Vui long nhap lai.");
+            }
+
+        } while (flag);
+        return numberOfFloor;
+    }
+
+    public String inputTypeOfRent() {
+        boolean flag = true;
+        String typeOfRent = "";
+        do {
+            System.out.print("Nhap vao kieu thue: ");
+            typeOfRent = scanner.nextLine();
+            String patt = "day|month|year|hour";
+            boolean math = typeOfRent.matches(patt);
+            if (math) {
+                flag = false;
+            } else {
+                System.out.println("Gia tri nhap vao khong chinh xac. Vui long nhap lai.");
+            }
+        } while (flag);
+        return typeOfRent;
+    }
+
+    public String inputRoomStandard() {
+        boolean flag = true;
+        String roomStandard = "";
+        do {
+            System.out.print("Nhap vao tieu chuan phong: ");
+            roomStandard = scanner.nextLine();
+            String patt = "(Normal|Premium|VIP)";
+            boolean math = roomStandard.matches(patt);
+            if (math) {
+                flag = false;
+            } else {
+                System.out.println("Gia tri nhap vao khong chinh xac. Vui long nhap lai.");
+            }
+        } while (flag);
+        return roomStandard;
+    }
+
+    public void showAllNameVillaNotDuplicate() throws IOException {
+        listVillaNotDuplicate = readCsvVilla.readCsvVillaNotDuplicate();
+        int i = 0;
+        for (String listVilla : listVillaNotDuplicate) {
+            i++;
+            System.out.println(i + "." + listVilla);
+            System.out.println("------------------------------------------------------------------------");
+        }
+    }
+
+    public void showAllNameHouseNotDuplicate() throws IOException {
+        listHouseNotDuplicate = readCsvHouse.readCsvHouseNotDuplicate();
+        int i = 0;
+        for (String listHouse : listHouseNotDuplicate) {
+            i++;
+            System.out.println(i + "." + listHouse);
+            System.out.println("------------------------------------------------------------------------");
+        }
+    }
+
+    public void showAllNameRoomNotDuplicate() throws IOException {
+        listRoomNotDuplicate = readCsvRoom.readCsvRoomNotDuplicate();
+        int i = 0;
+        for (String listRoom : listRoomNotDuplicate) {
+            i++;
+            System.out.println(i + "." + listRoom);
+            System.out.println("------------------------------------------------------------------------");
+        }
     }
 }
 
