@@ -14,7 +14,7 @@ public class ReadCsvVilla {
     BufferedReader fileReader = new BufferedReader(new FileReader("C:\\codegym\\CodeGym\\Module2\\" +
             "C0220G1-TranChiHieu-Module2\\src\\CaseStudy\\FuramaResort\\Data\\Villa.csv"));
     ArrayList<Villa> listVilla = new ArrayList<>();
-    TreeSet<String> listVillaNotDuplicate =new TreeSet<>();
+    TreeSet<String> listVillaNotDuplicate = new TreeSet<>();
 
 
     public ReadCsvVilla() throws FileNotFoundException {
@@ -24,7 +24,6 @@ public class ReadCsvVilla {
         String line;
         while ((line = fileReader.readLine()) != null) {
             String[] splitData = line.split(",");
-
             Villa villa = new Villa(splitData[0],
                     splitData[1],
                     Double.parseDouble(splitData[2]),
@@ -37,12 +36,9 @@ public class ReadCsvVilla {
                     ));
             listVilla.add(villa);
         }
-        for (Villa vl : listVilla) {
-            System.out.println(vl.showInfor());
-            System.out.println("--------------------------------------------------");
-        }
         return listVilla;
     }
+
     public TreeSet<String> readCsvVillaNotDuplicate() throws IOException {
         String line;
         while ((line = fileReader.readLine()) != null) {

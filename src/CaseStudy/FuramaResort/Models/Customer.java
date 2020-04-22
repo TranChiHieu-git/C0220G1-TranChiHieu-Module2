@@ -1,12 +1,10 @@
 package CaseStudy.FuramaResort.Models;
 
-import java.util.Date;
-
 public class Customer {
     private String name;
-    private Date birthday;
+    private String birthday;
     private String sex;
-    private int CMND;
+    private String CMND;
     private String numberPhone;
     private String email;
     private String typeOfCustomer;
@@ -16,8 +14,8 @@ public class Customer {
     Customer() {
     }
 
-    public Customer(String name, Date birthday, String sex, int CMND, String numberPhone, String email,
-                    String typeOfCustomer, String address, Services services) {
+    public Customer(String name, String birthday, String sex, String CMND, String numberPhone, String email,
+                    String typeOfCustomer, String address) {
         this.name = name;
         this.birthday = birthday;
         this.sex = sex;
@@ -26,7 +24,7 @@ public class Customer {
         this.email = email;
         this.typeOfCustomer = typeOfCustomer;
         this.address = address;
-        this.services = services;
+
     }
 
     public String getName() {
@@ -37,11 +35,11 @@ public class Customer {
         this.name = name;
     }
 
-    public Date getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 
@@ -53,11 +51,11 @@ public class Customer {
         this.sex = sex;
     }
 
-    public int getCMND() {
+    public String getCMND() {
         return CMND;
     }
 
-    public void setCMND(int CMND) {
+    public void setCMND(String CMND) {
         this.CMND = CMND;
     }
 
@@ -104,12 +102,12 @@ public class Customer {
     public String showInfor() {
         return "1.Ho va ten: " + this.getName() + "\n"
                 + "2.Ngay sinh: " + this.getBirthday() + "\n"
-                + "3.Gioi tinh: " + this.getBirthday() + "\n"
+                + "3.Gioi tinh: " + this.getSex() + "\n"
                 + "4.CMND: " + this.getCMND() + "\n"
                 + "5.So dien thoai: " + this.getNumberPhone() + "\n"
                 + "6.Email: " + this.getEmail() + "\n"
                 + "7.Loai khach hang: " + this.getTypeOfCustomer() + "\n"
-                + "8.Dia chi: " + this.getAddress() + "\n"
-                + "9.Loai dich vu su dung: " + this.getServices() + "\n";
+                + "8.Dia chi: " + this.getAddress() + "\n";
+
     }
 }

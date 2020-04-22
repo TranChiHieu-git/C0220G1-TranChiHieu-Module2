@@ -34,12 +34,9 @@ public class ReadCsvHouse {
                     ));
             listHouse.add(house);
         }
-        for (House hs : listHouse) {
-            System.out.println(hs.showInfor());
-            System.out.println("--------------------------------------------------");
-        }
         return listHouse;
     }
+
     public TreeSet<String> readCsvHouseNotDuplicate() throws IOException {
         String line;
         while ((line = fileReader.readLine()) != null) {

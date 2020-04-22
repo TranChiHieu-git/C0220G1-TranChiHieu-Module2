@@ -13,7 +13,7 @@ public class ReadCsvRoom {
     BufferedReader fileReader = new BufferedReader(new FileReader("C:\\codegym\\CodeGym\\Module2\\" +
             "C0220G1-TranChiHieu-Module2\\src\\CaseStudy\\FuramaResort\\Data\\Room.csv"));
     ArrayList<Room> listRoom = new ArrayList<>();
-    TreeSet<String> listRoomNotDuplicate =new TreeSet<>();
+    TreeSet<String> listRoomNotDuplicate = new TreeSet<>();
 
     public ReadCsvRoom() throws IOException {
 
@@ -32,12 +32,9 @@ public class ReadCsvRoom {
             );
             listRoom.add(room);
         }
-        for (Room hs : listRoom) {
-            System.out.println(hs.showInfor());
-            System.out.println("--------------------------------------------------");
-        }
         return listRoom;
     }
+
     public TreeSet<String> readCsvRoomNotDuplicate() throws IOException {
         String line;
         while ((line = fileReader.readLine()) != null) {

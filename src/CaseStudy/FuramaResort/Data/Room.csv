@@ -1,5 +1,6 @@
-RO01-0000,Bigroom,500.0,100.0,2,Day,
-RO02-0000,Smallroom,500.0,100.0,2,Day,
-RO03-0000,Bigroom,500.0,100.0,2,Day,
-RO04-0000,Smallroom,500.0,100.0,2,Day,
-RO99-0000,Roomvip,200.0,12.0,5.0,day
+RO00-0000,Roombig,1000.0,100.0,10,day
+RO01-0001,Roomsmall,1000.0,100.0,10,day
+RO02-0002,Roommid,1000.0,100.0,10,day
+RO02-0002,Roommid,1000.0,100.0,10,day
+RO03-0003,Roomnormal,1000.0,100.0,10,day
+RO18-1265,Roommid,1000.0,54.2,3,day
