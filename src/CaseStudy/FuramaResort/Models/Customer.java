@@ -100,14 +100,25 @@ public class Customer {
     }
 
     public String showInfor() {
-        return "1.Ho va ten: " + this.getName() + "\n"
-                + "2.Ngay sinh: " + this.getBirthday() + "\n"
-                + "3.Gioi tinh: " + this.getSex() + "\n"
-                + "4.CMND: " + this.getCMND() + "\n"
-                + "5.So dien thoai: " + this.getNumberPhone() + "\n"
-                + "6.Email: " + this.getEmail() + "\n"
-                + "7.Loai khach hang: " + this.getTypeOfCustomer() + "\n"
-                + "8.Dia chi: " + this.getAddress() + "\n";
-
+        if (getServices() == null) {
+            return "1.Ho va ten: " + this.getName() + "\n"
+                    + "2.Ngay sinh: " + this.getBirthday() + "\n"
+                    + "3.Gioi tinh: " + this.getSex() + "\n"
+                    + "4.CMND: " + this.getCMND() + "\n"
+                    + "5.So dien thoai: " + this.getNumberPhone() + "\n"
+                    + "6.Email: " + this.getEmail() + "\n"
+                    + "7.Loai khach hang: " + this.getTypeOfCustomer() + "\n"
+                    + "8.Dia chi: " + this.getAddress() + "\n";
+        } else {
+            return "1.Ho va ten: " + this.getName() + "\n"
+                    + "2.Ngay sinh: " + this.getBirthday() + "\n"
+                    + "3.Gioi tinh: " + this.getSex() + "\n"
+                    + "4.CMND: " + this.getCMND() + "\n"
+                    + "5.So dien thoai: " + this.getNumberPhone() + "\n"
+                    + "6.Email: " + this.getEmail() + "\n"
+                    + "7.Loai khach hang: " + this.getTypeOfCustomer() + "\n"
+                    + "8.Dia chi: " + this.getAddress() + "\n"
+                    + "9.Dich vu su dung: \n" + this.getServices().showInfor() + "\n";
+        }
     }
 }

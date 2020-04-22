@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.*;
 
 public class MainController {
-    Scanner scanner = new Scanner(System.in);
+
     ArrayList<Room> listRoom = new ArrayList<>();
     ArrayList<Villa> listVilla = new ArrayList<>();
     ArrayList<House> listHouse = new ArrayList<>();
@@ -14,19 +14,9 @@ public class MainController {
     TreeSet<String> listRoomNotDuplicate = new TreeSet<>();
     TreeSet<String> listHouseNotDuplicate = new TreeSet<>();
     TreeSet<String> listVillaNotDuplicate = new TreeSet<>();
-    ReadCsvVilla readCsvVilla = new ReadCsvVilla();
-    ReadCsvHouse readCsvHouse = new ReadCsvHouse();
-    ReadCsvRoom readCsvRoom = new ReadCsvRoom();
-    ReadCsvCustomer readCsvCustomer = new ReadCsvCustomer();
-    WriteCsvVilla writeCsvVilla = new WriteCsvVilla();
-    WriteCsvRoom writeCsvRoom = new WriteCsvRoom();
-    WriteCsvHouse writeCsvHouse = new WriteCsvHouse();
-    WriteCsvCustomer writeCsvCustomer = new WriteCsvCustomer();
-
-    public MainController() throws IOException {
-    }
 
     public void displayMainMenu() throws IOException {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("1.Add New Services\n" +
                 "2.Show Services\n" +
                 "3.Add New Customer\n" +
@@ -75,12 +65,8 @@ public class MainController {
                     this.displayMainMenu();
                     break;
                 case "9":
-                    writeCsvVilla.ext();
-                    writeCsvHouse.ext();
-                    writeCsvRoom.ext();
-                    writeCsvCustomer.ext();
-                    System.exit(0);
                     flag = false;
+                    System.exit(1);
                     break;
                 default:
                     System.out.println("Giá trị nhập vào không chính xác. Vui lòng nhập lại");
@@ -92,27 +78,31 @@ public class MainController {
 
     public void addNewBook() throws IOException {
         ReadCsvCustomer readCsvCustomer = new ReadCsvCustomer();
+        Scanner scanner = new Scanner(System.in);
         listCustomer = readCsvCustomer.readCsvCustomer();
         for (int i = 0; i < listCustomer.size(); i++) {
             System.out.println((i + 1) + "." + listCustomer.get(i).getName() + " | " + listCustomer.get(i).getCMND() + " | "
                     + listCustomer.get(i).getBirthday());
             System.out.println("-------------------------------------------------------------------------------------");
         }
+        Customer customer = null;
         String choose;
         boolean flag = true;
         do {
             System.out.print("Chọn nguoi dung muon book dich vu: ");
             choose = scanner.nextLine();
             if (Integer.parseInt(choose) > 0 && Integer.parseInt(choose) <= listCustomer.size()) {
+                customer = listCustomer.get(Integer.parseInt(choose) - 1);
                 flag = false;
             } else {
                 System.out.println("Giá trị nhập vào không chính xác. Vui lòng nhập lại");
             }
         } while (flag);
-        newBook();
+        newBook(customer);
     }
 
-    public void newBook() throws IOException {
+    public void newBook(Customer customer) throws IOException {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("1.Booking Villa\n" +
                 "2.Booking House\n" +
                 "3.Booking Room\n" +
@@ -125,12 +115,15 @@ public class MainController {
             choose = scanner.nextLine();
             switch (choose) {
                 case "1":
+                    this.addServicesVilla(customer);
                     this.displayMainMenu();
                     break;
                 case "2":
+                    this.addServicesHouse(customer);
                     this.displayMainMenu();
                     break;
                 case "3":
+                    this.addServicesRoom(customer);
                     this.displayMainMenu();
                     break;
                 case "4":
@@ -138,11 +131,7 @@ public class MainController {
                     break;
                 case "5":
                     flag = false;
-                    System.exit(0);
-                    writeCsvVilla.ext();
-                    writeCsvHouse.ext();
-                    writeCsvRoom.ext();
-                    writeCsvCustomer.ext();
+                    System.exit(1);
                     break;
                 default:
                     System.out.println("Giá trị nhập vào không chính xác. Vui lòng nhập lại");
@@ -152,7 +141,89 @@ public class MainController {
         } while (flag);
     }
 
+    public void addServicesVilla(Customer customer) throws IOException {
+        WriteCsvBooking writeCsvBooking = new WriteCsvBooking();
+        ReadCsvVilla readCsvVilla = new ReadCsvVilla();
+        Scanner scanner = new Scanner(System.in);
+        listVilla = readCsvVilla.readCsvVilla();
+        for (int i = 0; i < listVilla.size(); i++) {
+            System.out.println((i + 1) + "." + listVilla.get(i).getId() + " | " + listVilla.get(i).getNameServices() + " | "
+                    + listVilla.get(i).getRoomStandard() + " | " + listVilla.get(i).getRental() + " USD");
+            System.out.println("-------------------------------------------------------------------------------------");
+        }
+        String choose;
+        Villa services = null;
+        boolean flag = true;
+        do {
+            System.out.print("Chọn dich vu Villa muon book: ");
+            choose = scanner.nextLine();
+            if (Integer.parseInt(choose) > 0 && Integer.parseInt(choose) <= listVilla.size()) {
+                services = listVilla.get(Integer.parseInt(choose) - 1);
+                flag = false;
+            } else {
+                System.out.println("Giá trị nhập vào không chính xác. Vui lòng nhập lại");
+            }
+        } while (flag);
+        customer.setServices(services);
+        writeCsvBooking.writeCsvBookingVillaFile(customer, services);
+    }
+
+    public void addServicesHouse(Customer customer) throws IOException {
+        WriteCsvBooking writeCsvBooking = new WriteCsvBooking();
+        ReadCsvHouse readCsvHouse = new ReadCsvHouse();
+        Scanner scanner = new Scanner(System.in);
+        listHouse = readCsvHouse.readCsvHouse();
+        for (int i = 0; i < listHouse.size(); i++) {
+            System.out.println((i + 1) + "." + listHouse.get(i).getId() + " | " + listHouse.get(i).getNameServices() + " | "
+                    + listHouse.get(i).getRoomStandard() + " | " + listHouse.get(i).getRental() + " USD");
+            System.out.println("-------------------------------------------------------------------------------------");
+        }
+        String choose;
+        House services = null;
+        boolean flag = true;
+        do {
+            System.out.print("Chọn dich vu Villa muon book: ");
+            choose = scanner.nextLine();
+            if (Integer.parseInt(choose) > 0 && Integer.parseInt(choose) <= listVilla.size()) {
+                services = listHouse.get(Integer.parseInt(choose) - 1);
+                flag = false;
+            } else {
+                System.out.println("Giá trị nhập vào không chính xác. Vui lòng nhập lại");
+            }
+        } while (flag);
+        customer.setServices(services);
+        writeCsvBooking.writeCsvBookingHouseFile(customer, services);
+    }
+
+    public void addServicesRoom(Customer customer) throws IOException {
+        WriteCsvBooking writeCsvBooking = new WriteCsvBooking();
+        ReadCsvRoom readCsvRoom = new ReadCsvRoom();
+        Scanner scanner = new Scanner(System.in);
+        listRoom = readCsvRoom.readCsvRoom();
+        for (int i = 0; i < listRoom.size(); i++) {
+            System.out.println((i + 1) + "." + listRoom.get(i).getId() + " | " + listRoom.get(i).getNameServices() + " | "
+                    + " | " + listRoom.get(i).getRental() + " USD");
+            System.out.println("-------------------------------------------------------------------------------------");
+        }
+        String choose;
+        Room services = null;
+        boolean flag = true;
+        do {
+            System.out.print("Chọn dich vu Villa muon book: ");
+            choose = scanner.nextLine();
+            if (Integer.parseInt(choose) > 0 && Integer.parseInt(choose) <= listVilla.size()) {
+                services = listRoom.get(Integer.parseInt(choose) - 1);
+                flag = false;
+            } else {
+                System.out.println("Giá trị nhập vào không chính xác. Vui lòng nhập lại");
+            }
+        } while (flag);
+        customer.setServices(services);
+        writeCsvBooking.writeCsvBookingRoomFile(customer, services);
+    }
+
     public void addNewCustomer() throws IOException {
+        WriteCsvCustomer writeCsvCustomer = new WriteCsvCustomer();
         String name = inputName();
         String birthDay = inputBirthday();
         String gender = inputGender();
@@ -162,23 +233,24 @@ public class MainController {
         String typeOfCustomers = inputTypeOfCustomer();
         String address = inputAddress();
         //Services typeOfServices = inputTypeOfServices();
-
         Customer customer = new Customer(name, birthDay, gender, cmnd, numberPhone, email, typeOfCustomers, address);
         listCustomer.add(customer);
         writeCsvCustomer.writeCsvCustomerFile(listCustomer);
+        writeCsvCustomer.ext();
     }
 
     public void showInformationCustomers() throws IOException {
+        ReadCsvCustomer readCsvCustomer = new ReadCsvCustomer();
         listCustomer = readCsvCustomer.readCsvCustomer();
         for (Customer ct : listCustomer) {
             System.out.println("--------------------------------------------------------------------------------");
             System.out.println(ct.showInfor());
             System.out.println("--------------------------------------------------------------------------------");
         }
-
     }
 
     public String inputName() {
+        Scanner scanner = new Scanner(System.in);
         boolean flag = true;
         String name = null;
         do {
@@ -212,6 +284,7 @@ public class MainController {
     }
 
     public String inputEmail() {
+        Scanner scanner = new Scanner(System.in);
         boolean flag = true;
         String email = null;
         do {
@@ -233,6 +306,7 @@ public class MainController {
     }
 
     public String inputGender() {
+        Scanner scanner = new Scanner(System.in);
         boolean flag = true;
         String gender = "";
         do {
@@ -259,6 +333,7 @@ public class MainController {
     }
 
     public String inputCMND() {
+        Scanner scanner = new Scanner(System.in);
         boolean flag = true;
         String cmnd = "";
         do {
@@ -280,6 +355,7 @@ public class MainController {
     }
 
     public String inputBirthday() {
+        Scanner scanner = new Scanner(System.in);
         boolean flag = true;
         String birthDay = "";
         do {
@@ -315,6 +391,7 @@ public class MainController {
     }
 
     public String inputNumberPhone() {
+        Scanner scanner = new Scanner(System.in);
         boolean flag = true;
         String numberPhone = "";
         do {
@@ -332,6 +409,7 @@ public class MainController {
     }
 
     public String inputAddress() {
+        Scanner scanner = new Scanner(System.in);
         String address = "";
         System.out.print("Dia chi khach hang: ");
         address = scanner.nextLine();
@@ -339,6 +417,7 @@ public class MainController {
     }
 
     public String inputTypeOfCustomer() {
+        Scanner scanner = new Scanner(System.in);
         boolean flag = true;
         String typeOfCustomers = "";
         do {
@@ -356,6 +435,10 @@ public class MainController {
     }
 
     public Services inputTypeOfServices() throws IOException {
+        ReadCsvRoom readCsvRoom = new ReadCsvRoom();
+        ReadCsvHouse readCsvHouse = new ReadCsvHouse();
+        ReadCsvVilla readCsvVilla = new ReadCsvVilla();
+        Scanner scanner = new Scanner(System.in);
         boolean flag = true;
         Services typeOfServices = null;
         do {
@@ -396,6 +479,7 @@ public class MainController {
     }
 
     public void addNewServices() throws IOException {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("1.Add New Villa\n" +
                 "2.Add New House\n" +
                 "3.Add New Room\n" +
@@ -425,10 +509,6 @@ public class MainController {
                 case "5":
                     flag = false;
                     System.exit(0);
-                    writeCsvVilla.ext();
-                    writeCsvHouse.ext();
-                    writeCsvRoom.ext();
-                    writeCsvCustomer.ext();
                     break;
                 default:
                     System.out.println("Giá trị nhập vào không chính xác. Vui lòng nhập lại");
@@ -439,7 +519,7 @@ public class MainController {
     }
 
     public void addNewVilla() throws IOException {
-
+        WriteCsvVilla writeCsvVilla = new WriteCsvVilla();
         int i = 1;
         String id = inputId(i);
         String nameServices = inputNameSerVices();
@@ -454,11 +534,12 @@ public class MainController {
                 Integer.parseInt(maxNumberOfPeople), typeOfRent,
                 roomStandard, Double.parseDouble(poolArea), Integer.parseInt(numberOfFloors));
         listVilla.add(villa);
-
         writeCsvVilla.writeCsvVillaFile(listVilla);
+        writeCsvVilla.ext();
     }
 
     public void addNewHouse() throws IOException {
+        WriteCsvHouse writeCsvHouse = new WriteCsvHouse();
         int i = 2;
         String id = inputId(i);
         String nameServices = inputNameSerVices();
@@ -472,11 +553,12 @@ public class MainController {
                 Integer.parseInt(maxNumberOfPeople), typeOfRent,
                 roomStandard, Integer.parseInt(numberOfFloors));
         listHouse.add(house);
-
         writeCsvHouse.WriteCsvHouseFile(listHouse);
+        writeCsvHouse.ext();
     }
 
     public void addNewRoom() throws IOException {
+        WriteCsvRoom writeCsvRoom = new WriteCsvRoom();
         int i = 3;
         String id = inputId(i);
         String nameServices = inputNameSerVices();
@@ -487,11 +569,12 @@ public class MainController {
         Room room = new Room(id, nameServices, Double.parseDouble(areaUsed), Double.parseDouble(rental),
                 Integer.parseInt(maxNumberOfPeople), typeOfRent);
         listRoom.add(room);
-
         writeCsvRoom.writeCsvRoomFile(listRoom);
+        writeCsvRoom.ext();
     }
 
     public void showServices() throws IOException {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("1.Show all Villa\n" +
                 "2.Show all House\n" +
                 "3.Show all Room\n" +
@@ -535,10 +618,7 @@ public class MainController {
                     break;
                 case "8":
                     flag = false;
-                    System.exit(0);
-                    writeCsvVilla.ext();
-                    writeCsvHouse.ext();
-                    writeCsvRoom.ext();
+                    System.exit(1);
                     break;
                 default:
                     System.out.println("Giá trị nhập vào không chính xác. Vui lòng nhập lại");
@@ -549,6 +629,7 @@ public class MainController {
     }
 
     public void showAllVilla() throws IOException {
+        ReadCsvVilla readCsvVilla = new ReadCsvVilla();
         listVilla = readCsvVilla.readCsvVilla();
         for (Villa villa : listVilla) {
             System.out.println("----------------------------------------------------------------------");
@@ -558,6 +639,7 @@ public class MainController {
     }
 
     public void showAllHouse() throws IOException {
+        ReadCsvHouse readCsvHouse = new ReadCsvHouse();
         listHouse = readCsvHouse.readCsvHouse();
         for (House house : listHouse) {
             System.out.println("----------------------------------------------------------------------");
@@ -567,6 +649,7 @@ public class MainController {
     }
 
     public void showAllRoom() throws IOException {
+        ReadCsvRoom readCsvRoom = new ReadCsvRoom();
         listRoom = readCsvRoom.readCsvRoom();
         for (Room room : listRoom) {
             System.out.println("----------------------------------------------------------------------");
@@ -576,6 +659,7 @@ public class MainController {
     }
 
     public String inputId(int i) {
+        Scanner scanner = new Scanner(System.in);
         boolean flag = true;
         String id;
         do {
@@ -600,6 +684,7 @@ public class MainController {
     }
 
     public String inputNameSerVices() {
+        Scanner scanner = new Scanner(System.in);
         boolean flag = true;
         String nameSerVices;
         do {
@@ -617,6 +702,7 @@ public class MainController {
     }
 
     public String inputAreaUsed() {
+        Scanner scanner = new Scanner(System.in);
         boolean flag = true;
         String areaUsed;
         do {
@@ -635,6 +721,7 @@ public class MainController {
     }
 
     public String inputAreaPool() {
+        Scanner scanner = new Scanner(System.in);
         boolean flag = true;
         String areaPool;
         do {
@@ -653,6 +740,7 @@ public class MainController {
     }
 
     public String inputRental() {
+        Scanner scanner = new Scanner(System.in);
         boolean flag = true;
         String rental;
         do {
@@ -671,6 +759,7 @@ public class MainController {
     }
 
     public String inputMaxNumberOfPeople() {
+        Scanner scanner = new Scanner(System.in);
         boolean flag = true;
         String maxNumberOfPeople;
         do {
@@ -689,6 +778,7 @@ public class MainController {
     }
 
     public String inputNumberOfFloor() {
+        Scanner scanner = new Scanner(System.in);
         boolean flag = true;
         String numberOfFloor;
         do {
@@ -707,6 +797,7 @@ public class MainController {
     }
 
     public String inputTypeOfRent() {
+        Scanner scanner = new Scanner(System.in);
         boolean flag = true;
         String typeOfRent = "";
         do {
@@ -724,6 +815,7 @@ public class MainController {
     }
 
     public String inputRoomStandard() {
+        Scanner scanner = new Scanner(System.in);
         boolean flag = true;
         String roomStandard = "";
         do {
@@ -741,6 +833,7 @@ public class MainController {
     }
 
     public void showAllNameVillaNotDuplicate() throws IOException {
+        ReadCsvVilla readCsvVilla = new ReadCsvVilla();
         listVillaNotDuplicate = readCsvVilla.readCsvVillaNotDuplicate();
         int i = 0;
         for (String listVilla : listVillaNotDuplicate) {
@@ -751,6 +844,7 @@ public class MainController {
     }
 
     public void showAllNameHouseNotDuplicate() throws IOException {
+        ReadCsvHouse readCsvHouse = new ReadCsvHouse();
         listHouseNotDuplicate = readCsvHouse.readCsvHouseNotDuplicate();
         int i = 0;
         for (String listHouse : listHouseNotDuplicate) {
@@ -761,6 +855,7 @@ public class MainController {
     }
 
     public void showAllNameRoomNotDuplicate() throws IOException {
+        ReadCsvRoom readCsvRoom = new ReadCsvRoom();
         listRoomNotDuplicate = readCsvRoom.readCsvRoomNotDuplicate();
         int i = 0;
         for (String listRoom : listRoomNotDuplicate) {
