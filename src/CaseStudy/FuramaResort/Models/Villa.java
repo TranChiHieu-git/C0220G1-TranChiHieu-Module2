@@ -4,13 +4,15 @@ public class Villa extends Services {
     private String roomStandard;
     private double poolArea;
     private int numberOfFloors;
+    private String descriptionOfOtherAmenities;
 
     public Villa(String id, String nameServices, double areaUsed, double rental, int maxNumberOfPeople,
-                 String typeOfRent, String roomStandard, double poolArea, int numberOfFloors) {
+                 String typeOfRent, String roomStandard, String descriptionOfOtherAmenities, double poolArea, int numberOfFloors) {
         super(id, nameServices, areaUsed, rental, maxNumberOfPeople, typeOfRent);
         this.roomStandard = roomStandard;
         this.poolArea = poolArea;
         this.numberOfFloors = numberOfFloors;
+        this.descriptionOfOtherAmenities = descriptionOfOtherAmenities;
     }
 
     public String getRoomStandard() {
@@ -22,9 +24,12 @@ public class Villa extends Services {
     }
 
     public String getDescriptionOfOtherAmenities() {
-        return this.getOtherAmenities();
+        return descriptionOfOtherAmenities;
     }
 
+    public void setDescriptionOfOtherAmenities(String descriptionOfOtherAmenities) {
+        this.descriptionOfOtherAmenities = descriptionOfOtherAmenities;
+    }
 
     public double getPoolArea() {
         return poolArea;

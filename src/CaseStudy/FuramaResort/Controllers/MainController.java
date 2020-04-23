@@ -79,7 +79,7 @@ public class MainController {
     int i = 0;
     Queue<String> listBookingMovieTicket = new ArrayDeque<>(10);
 
-    public void bookingMovieTicket4D() throws IOException {
+    public void bookingMovieTicket4D() {
 
         i++;
         System.out.println("------------------------------------------------------------------------------------");
@@ -587,11 +587,12 @@ public class MainController {
         String maxNumberOfPeople = inputMaxNumberOfPeople();
         String typeOfRent = inputTypeOfRent();
         String roomStandard = inputRoomStandard();
+        String descriptionOfOtherAmenities = inputDescriptionOfOtherAmenities();
         String poolArea = inputAreaPool();
         String numberOfFloors = inputNumberOfFloor();
         Villa villa = new Villa(id, nameServices, Double.parseDouble(areaUsed), Double.parseDouble(rental),
                 Integer.parseInt(maxNumberOfPeople), typeOfRent,
-                roomStandard, Double.parseDouble(poolArea), Integer.parseInt(numberOfFloors));
+                roomStandard, descriptionOfOtherAmenities, Double.parseDouble(poolArea), Integer.parseInt(numberOfFloors));
         listVilla.add(villa);
         writeCsvVilla.writeCsvVillaFile(listVilla);
         writeCsvVilla.ext();
@@ -607,17 +608,17 @@ public class MainController {
         String maxNumberOfPeople = inputMaxNumberOfPeople();
         String typeOfRent = inputTypeOfRent();
         String roomStandard = inputRoomStandard();
+        String descriptionOfOtherAmenities = inputDescriptionOfOtherAmenities();
         String numberOfFloors = inputNumberOfFloor();
         House house = new House(id, nameServices, Double.parseDouble(areaUsed), Double.parseDouble(rental),
                 Integer.parseInt(maxNumberOfPeople), typeOfRent,
-                roomStandard, Integer.parseInt(numberOfFloors));
+                roomStandard, descriptionOfOtherAmenities, Integer.parseInt(numberOfFloors));
         listHouse.add(house);
         writeCsvHouse.WriteCsvHouseFile(listHouse);
         writeCsvHouse.ext();
     }
 
     public void addNewRoom() throws IOException {
-        WriteCsvRoom writeCsvRoom = new WriteCsvRoom();
         int i = 3;
         String id = inputId(i);
         String nameServices = inputNameSerVices();
@@ -625,9 +626,11 @@ public class MainController {
         String rental = inputRental();
         String maxNumberOfPeople = inputMaxNumberOfPeople();
         String typeOfRent = inputTypeOfRent();
+        String freeServices = inputFreeServices();
         Room room = new Room(id, nameServices, Double.parseDouble(areaUsed), Double.parseDouble(rental),
-                Integer.parseInt(maxNumberOfPeople), typeOfRent);
+                Integer.parseInt(maxNumberOfPeople), typeOfRent, freeServices);
         listRoom.add(room);
+        WriteCsvRoom writeCsvRoom = new WriteCsvRoom();
         writeCsvRoom.writeCsvRoomFile(listRoom);
         writeCsvRoom.ext();
     }
@@ -717,6 +720,44 @@ public class MainController {
         }
     }
 
+    public String inputDescriptionOfOtherAmenities() {
+        Scanner scanner = new Scanner(System.in);
+        boolean flag = true;
+        String otherAmenities;
+        do {
+            System.out.print("Nhap vao tien nghi khac: ");
+            otherAmenities = scanner.nextLine();
+            String patt;
+            patt = "^[A-Z]+[a-zA-Z0-9\\s]{1,}";
+            boolean math = otherAmenities.matches(patt);
+            if (math) {
+                flag = false;
+            } else {
+                System.out.println("Gia tri nhap vao khong chinh xac. Vui long nhap lai.");
+            }
+        } while (flag);
+        return otherAmenities;
+    }
+
+    public String inputFreeServices() {
+        Scanner scanner = new Scanner(System.in);
+        boolean flag = true;
+        String freeServices;
+        do {
+            System.out.print("Nhap vao dich vu mien phi kem theo: ");
+            freeServices = scanner.nextLine();
+            String patt;
+            patt = "^[A-Z]+[a-zA-Z0-9\\s]{1,}";
+            boolean math = freeServices.matches(patt);
+            if (math) {
+                flag = false;
+            } else {
+                System.out.println("Gia tri nhap vao khong chinh xac. Vui long nhap lai.");
+            }
+        } while (flag);
+        return freeServices;
+    }
+
     public String inputId(int i) {
         Scanner scanner = new Scanner(System.in);
         boolean flag = true;
@@ -726,11 +767,11 @@ public class MainController {
             id = scanner.nextLine();
             String patt;
             if (i == 1) {
-                patt = "(VL)+[0-9]{2}+\\-[0-9]{4}";
+                patt = "(SVVL)+\\-[0-9]{4}";
             } else if (i == 2) {
-                patt = "(HO)+[0-9]{2}+\\-[0-9]{4}";
+                patt = "(SVHO)+\\-[0-9]{4}";
             } else {
-                patt = "(RO)+[0-9]{2}+\\-[0-9]{4}";
+                patt = "(SVRO)+\\-[0-9]{4}";
             }
             boolean math = id.matches(patt);
             if (math) {
@@ -769,7 +810,7 @@ public class MainController {
             areaUsed = scanner.nextLine();
             String patt = "^[1-9]+(\\d){1,}+\\.+(\\d){1,}";
             boolean math = areaUsed.matches(patt);
-            if (math && (Double.valueOf(areaUsed) > 30.0)) {
+            if (math && (Double.parseDouble(areaUsed) > 30.0)) {
                 flag = false;
             } else {
                 System.out.println("Gia tri nhap vao khong chinh xac. Vui long nhap lai.");
@@ -788,7 +829,7 @@ public class MainController {
             areaPool = scanner.nextLine();
             String patt = "^[1-9]+(\\d){1,}+\\.+(\\d){1,}";
             boolean math = areaPool.matches(patt);
-            if (math && (Double.valueOf(areaPool) > 30.0)) {
+            if (math && (Double.parseDouble(areaPool) > 30.0)) {
                 flag = false;
             } else {
                 System.out.println("Gia tri nhap vao khong chinh xac. Vui long nhap lai.");
@@ -807,7 +848,7 @@ public class MainController {
             rental = scanner.nextLine();
             String patt = "^[0-9]+(\\d){0,}+\\.+(\\d){1,}";
             boolean math = rental.matches(patt);
-            if (math && (Double.valueOf(rental) > 0.0)) {
+            if (math && (Double.parseDouble(rental) > 0.0)) {
                 flag = false;
             } else {
                 System.out.println("Gia tri nhap vao khong chinh xac. Vui long nhap lai.");
@@ -862,7 +903,7 @@ public class MainController {
         do {
             System.out.print("Nhap vao kieu thue: ");
             typeOfRent = scanner.nextLine();
-            String patt = "day|month|year|hour|week";
+            String patt = "Day|Month|Year|Hour|Week";
             boolean math = typeOfRent.matches(patt);
             if (math) {
                 flag = false;
@@ -880,7 +921,7 @@ public class MainController {
         do {
             System.out.print("Nhap vao tieu chuan phong: ");
             roomStandard = scanner.nextLine();
-            String patt = "(Normal|Premium|VIP)";
+            String patt = "(Small|Normal|Medium|Big|VIP)";
             boolean math = roomStandard.matches(patt);
             if (math) {
                 flag = false;

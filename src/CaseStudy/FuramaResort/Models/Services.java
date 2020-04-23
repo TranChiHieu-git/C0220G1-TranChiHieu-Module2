@@ -7,11 +7,6 @@ abstract public class Services implements Massage, Karaoke, Food, Water, RentCar
     private double rental;
     private int maxNumberOfPeople;
     private String typeOfRent;
-    private String otherAmenities = "\n\t1.Tên dịch vụ: " + Massage.name + ", giá: " + Massage.cost + " USD/" + Massage.unit + "\n"
-            + "\t2.Tên dịch vụ: " + Karaoke.name + ", giá: " + Karaoke.cost + " USD/" + Karaoke.slot + "\n"
-            + "\t3.Tên dịch vụ: " + Food.name + ", giá: " + Food.cost + " USD/" + Food.slot + "\n"
-            + "\t4.Tên dịch vụ: " + Water.name + ", giá: " + Water.cost + " USD/" + Water.slot + "\n"
-            + "\t5.Tên dịch vụ: " + RentCar.name + ", giá: " + RentCar.cost + " USD/" + RentCar.slot;
 
     public Services(String id, String nameServices, double areaUsed, double rental, int maxNumberOfPeople, String typeOfRent) {
         this.id = id;
@@ -70,9 +65,6 @@ abstract public class Services implements Massage, Karaoke, Food, Water, RentCar
         this.typeOfRent = typeOfRent;
     }
 
-    public String getOtherAmenities() {
-        return this.otherAmenities;
-    }
 
     abstract public String showInfor();
 }

@@ -3,12 +3,22 @@ package CaseStudy.FuramaResort.Models;
 public class House extends Services {
     private String roomStandard;
     private int numberOfFloors;
+    private String descriptionOfOtherAmenities;
 
     public House(String id, String nameServices, double areaUsed, double rental, int maxNumberOfPeople,
-                 String typeOfRent, String roomStandard, int numberOfFloors) {
+                 String typeOfRent, String roomStandard, String descriptionOfOtherAmenities, int numberOfFloors) {
         super(id, nameServices, areaUsed, rental, maxNumberOfPeople, typeOfRent);
         this.roomStandard = roomStandard;
         this.numberOfFloors = numberOfFloors;
+        this.descriptionOfOtherAmenities = descriptionOfOtherAmenities;
+    }
+
+    public String getDescriptionOfOtherAmenities() {
+        return descriptionOfOtherAmenities;
+    }
+
+    public void setDescriptionOfOtherAmenities(String descriptionOfOtherAmenities) {
+        this.descriptionOfOtherAmenities = descriptionOfOtherAmenities;
     }
 
     public String getRoomStandard() {
@@ -27,9 +37,6 @@ public class House extends Services {
         this.numberOfFloors = numberOfFloors;
     }
 
-    public String getDescriptionOfOtherAmenities() {
-        return this.getOtherAmenities();
-    }
 
     @Override
     public String showInfor() {

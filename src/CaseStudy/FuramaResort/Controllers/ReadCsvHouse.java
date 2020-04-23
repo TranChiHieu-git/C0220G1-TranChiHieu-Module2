@@ -30,7 +30,8 @@ public class ReadCsvHouse {
                     Integer.parseInt(splitData[4]),
                     splitData[5],
                     splitData[6],
-                    Integer.parseInt(splitData[7]
+                    splitData[7],
+                    Integer.parseInt(splitData[8]
                     ));
             listHouse.add(house);
         }

@@ -3,7 +3,7 @@ package CaseStudy.FuramaResort.Controllers;
 import CaseStudy.FuramaResort.Models.Customer;
 
 import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 public class WriteCsvCustomer {
@@ -12,7 +12,7 @@ public class WriteCsvCustomer {
     FileWriter fileCustomer = null;
 
     public void writeCsvCustomerFile(ArrayList<Customer> listCustomer) throws IOException {
-        fileCustomer = new FileWriter("C:\\codegym\\CodeGym\\Module2\\C0220G1-TranChiHieu-Module2\\src\\CaseStudy\\FuramaResort\\Data\\Customer.csv", true);
+        fileCustomer = new FileWriter("C:\\codegym\\CodeGym\\Module2\\C0220G1-TranChiHieu-Module2\\src\\CaseStudy\\FuramaResort\\Data\\Customer.csv");
         for (Customer customer : listCustomer) {
             fileCustomer.append(customer.getName());
             fileCustomer.append(DAU_PHAY);
@@ -34,12 +34,11 @@ public class WriteCsvCustomer {
         }
     }
 
-    public void ext() throws IOException {
+    public void ext() {
         try {
             fileCustomer.close();
         } catch (Exception e) {
-            System.out.println("");
+            System.out.println();
         }
-
     }
 }

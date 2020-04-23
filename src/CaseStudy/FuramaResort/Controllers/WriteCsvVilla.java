@@ -10,9 +10,7 @@ public class WriteCsvVilla {
     private static final String DONG_MOI = "\n";
     FileWriter fileVilla = null;
 
-    public void writeCsvVillaFile(ArrayList<Villa> listVilla)
-            throws IOException {
-
+    public void writeCsvVillaFile(ArrayList<Villa> listVilla) throws IOException {
         fileVilla = new FileWriter("C:\\codegym\\CodeGym\\Module2\\" +
                 "C0220G1-TranChiHieu-Module2\\src\\CaseStudy\\FuramaResort\\Data\\Villa.csv");
         for (Villa villa : listVilla) {
@@ -29,6 +27,8 @@ public class WriteCsvVilla {
                     .append(DAU_PHAY)
                     .append(villa.getRoomStandard())
                     .append(DAU_PHAY)
+                    .append(villa.getDescriptionOfOtherAmenities())
+                    .append(DAU_PHAY)
                     .append(String.valueOf(villa.getPoolArea()))
                     .append(DAU_PHAY)
                     .append(String.valueOf(villa.getNumberOfFloors()))
@@ -37,11 +37,11 @@ public class WriteCsvVilla {
         }
     }
 
-    public void ext() throws IOException {
+    public void ext() {
         try {
             fileVilla.close();
         } catch (Exception e) {
-            System.out.println("");
+            System.out.println();
         }
     }
 }

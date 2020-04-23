@@ -3,7 +3,7 @@ package CaseStudy.FuramaResort.Controllers;
 import CaseStudy.FuramaResort.Models.*;
 
 import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
 public class WriteCsvBooking {
     private static final String DAU_PHAY = ",";
@@ -11,7 +11,7 @@ public class WriteCsvBooking {
     FileWriter fileBooking = null;
 
     public void writeCsvBookingVillaFile(Customer customer, Villa services) throws IOException {
-        fileBooking = new FileWriter("C:\\codegym\\CodeGym\\Module2\\C0220G1-TranChiHieu-Module2\\src\\CaseStudy\\FuramaResort\\Data\\Booking.csv", true);
+        fileBooking = new FileWriter("C:\\codegym\\CodeGym\\Module2\\C0220G1-TranChiHieu-Module2\\src\\CaseStudy\\FuramaResort\\Data\\Booking.csv");
         fileBooking.append(customer.getName());
         fileBooking.append(DAU_PHAY);
         fileBooking.append(customer.getBirthday());
@@ -50,7 +50,7 @@ public class WriteCsvBooking {
     }
 
     public void writeCsvBookingHouseFile(Customer customer, House services) throws IOException {
-        fileBooking = new FileWriter("C:\\codegym\\CodeGym\\Module2\\C0220G1-TranChiHieu-Module2\\src\\CaseStudy\\FuramaResort\\Data\\Booking.csv", true);
+        fileBooking = new FileWriter("C:\\codegym\\CodeGym\\Module2\\C0220G1-TranChiHieu-Module2\\src\\CaseStudy\\FuramaResort\\Data\\Booking.csv");
         fileBooking.append(customer.getName());
         fileBooking.append(DAU_PHAY);
         fileBooking.append(customer.getBirthday());
@@ -87,7 +87,7 @@ public class WriteCsvBooking {
     }
 
     public void writeCsvBookingRoomFile(Customer customer, Room services) throws IOException {
-        fileBooking = new FileWriter("C:\\codegym\\CodeGym\\Module2\\C0220G1-TranChiHieu-Module2\\src\\CaseStudy\\FuramaResort\\Data\\Booking.csv", true);
+        fileBooking = new FileWriter("C:\\codegym\\CodeGym\\Module2\\C0220G1-TranChiHieu-Module2\\src\\CaseStudy\\FuramaResort\\Data\\Booking.csv");
         fileBooking.append(customer.getName());
         fileBooking.append(DAU_PHAY);
         fileBooking.append(customer.getBirthday());
@@ -119,11 +119,11 @@ public class WriteCsvBooking {
         fileBooking.flush();
     }
 
-    public void ext() throws IOException {
+    public void ext(){
         try {
             fileBooking.close();
         } catch (Exception e) {
-            System.out.println("");
+            System.out.println();
         }
 
     }

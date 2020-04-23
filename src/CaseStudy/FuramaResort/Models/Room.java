@@ -1,18 +1,21 @@
 package CaseStudy.FuramaResort.Models;
 
 public class Room extends Services {
-    private String freeServices = "\n\t1.Khăn lạnh miễn phí \n" +
-            "\t2.Nước mát miễn phí";
+    private String freeServices;
 
     public Room(String id, String nameServices, double areaUsed, double rental, int maxNumberOfPeople,
-                String typeOfRent) {
+                String typeOfRent, String freeServices) {
         super(id, nameServices, areaUsed, rental, maxNumberOfPeople, typeOfRent);
+        this.freeServices = freeServices;
     }
 
     public String getFreeServices() {
         return freeServices;
     }
 
+    public void setFreeServices(String freeServices) {
+        this.freeServices = freeServices;
+    }
 
     @Override
     public String showInfor() {

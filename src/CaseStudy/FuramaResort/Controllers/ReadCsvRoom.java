@@ -28,7 +28,8 @@ public class ReadCsvRoom {
                     Double.parseDouble(splitData[2]),
                     Double.parseDouble(splitData[3]),
                     Integer.parseInt(splitData[4]),
-                    splitData[5]
+                    splitData[5],
+                    splitData[6]
             );
             listRoom.add(room);
         }

@@ -31,8 +31,9 @@ public class ReadCsvVilla {
                     Integer.parseInt(splitData[4]),
                     splitData[5],
                     splitData[6],
-                    Double.parseDouble(splitData[7]),
-                    Integer.parseInt(splitData[8]
+                    splitData[7],
+                    Double.parseDouble(splitData[8]),
+                    Integer.parseInt(splitData[9]
                     ));
             listVilla.add(villa);
         }
