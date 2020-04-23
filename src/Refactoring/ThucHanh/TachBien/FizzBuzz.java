@@ -1,3 +1,5 @@
+package Refactoring.ThucHanh.TachBien;
+
 public class FizzBuzz {
     public static String fizzBuzz(int number) {
         boolean isFizz = number % 3 == 0;

@@ -53,15 +53,15 @@ public class MainController {
                     this.displayMainMenu();
                     break;
                 case "6":
-                    System.out.println(choose);
+                    this.showInformationOfEmployee();
                     this.displayMainMenu();
                     break;
                 case "7":
-                    System.out.println(choose);
+                    this.bookingMovieTicket4D();
                     this.displayMainMenu();
                     break;
                 case "8":
-                    System.out.println(choose);
+                    this.findEmployee();
                     this.displayMainMenu();
                     break;
                 case "9":
@@ -74,6 +74,65 @@ public class MainController {
                     break;
             }
         } while (flag);
+    }
+
+    int i = 0;
+    Queue<String> listBookingMovieTicket = new ArrayDeque<>(10);
+
+    public void bookingMovieTicket4D() throws IOException {
+
+        i++;
+        System.out.println("------------------------------------------------------------------------------------");
+        System.out.println("Khach hang " + (i));
+        String inputNameOfCustomer = inputName();
+        System.out.println("------------------------------------------------------------------------------------");
+        listBookingMovieTicket.add(inputNameOfCustomer);
+        if (i > 9) {
+            printListTicket(listBookingMovieTicket);
+            i = 0;
+        }
+    }
+
+    public void printListTicket(Queue<String> listBookingMovieTicket) {
+        System.out.println("--------------------------------------------------------------------------");
+        System.out.println("Danh sach khach hang dat ve: ");
+        int i = 0;
+        while (listBookingMovieTicket.peek() != null) {
+            System.out.println((i + 1) + ". " + listBookingMovieTicket.remove());
+            i++;
+        }
+        System.out.println("--------------------------------------------------------------------------");
+    }
+
+    public void findEmployee() throws IOException {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("------------------------------------------------------------------------------------");
+        System.out.print("Nhap vao ma so nhan vien: ");
+        String inputIdOfEmployee = scanner.nextLine();
+        System.out.println("------------------------------------------------------------------------------------");
+        TuHoSo tuHoSo = new TuHoSo();
+        Stack<String> listInforEmployee = tuHoSo.stackHoSo();
+        int count = 0;
+        for (String employee : listInforEmployee) {
+            String[] employeeInfor = employee.split("\\.");
+            if (employeeInfor[0].equals("ID: " + inputIdOfEmployee + " ")) {
+                System.out.println(employee);
+                count++;
+                System.out.println("------------------------------------------------------------------------------------");
+            }
+        }
+        if (count == 0) {
+            System.out.println("Khong co thong tin can tim trong he thong.");
+            System.out.println("------------------------------------------------------------------------------------");
+        }
+    }
+
+    public void showInformationOfEmployee() throws IOException {
+        ReadCsvEmployee readCsvEmployee = new ReadCsvEmployee();
+        Map<String, Employee> mapEmployee = readCsvEmployee.readCsvEmployee();
+        for (Map.Entry<String, Employee> entry : mapEmployee.entrySet()) {
+            System.out.println("ID: " + entry.getKey() + " " + entry.getValue().toString());
+        }
     }
 
     public void addNewBook() throws IOException {
@@ -255,7 +314,7 @@ public class MainController {
         String name = null;
         do {
             try {
-                System.out.print("Ten khach hang: ");
+                System.out.print("Ten Khach Hang : ");
                 name = scanner.nextLine();
                 String patt1 = "^[A-Z]+[a-z]{1,}";
                 int count = 0;
