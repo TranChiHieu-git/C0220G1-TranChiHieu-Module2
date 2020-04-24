@@ -1,9 +1,9 @@
-package CaseStudy.FuramaResort.Controllers;
+package CaseStudy.FuramaResort.CustomerException;
 
-public class EmailException extends Exception {
+public class GenderException extends Exception {
     private String message;
 
-    public EmailException(String message) {
+    public GenderException(String message) {
         super(message);
         this.message = message;
     }

@@ -1,4 +1,4 @@
-package CaseStudy.FuramaResort.Controllers;
+package CaseStudy.FuramaResort.Commons;
 
 import CaseStudy.FuramaResort.Models.Customer;
 

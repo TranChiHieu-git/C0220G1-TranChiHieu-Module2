@@ -8,11 +8,11 @@ public class toString {
         fan1.setColor("yellow");
         fan1.setOn(true);
         Fan fan2 = new Fan();
-        fan2.setSpeed(2);
-        fan2.setRadius(5);
-        fan2.setColor("blue");
-        fan2.setOn(false);
-        System.out.println("quat 1: "+fan1.toString());
-        System.out.println("quat 2: "+fan2.toString());
+        fan2.setSpeed(3);
+        fan2.setRadius(10);
+        fan2.setColor("yellow");
+        fan2.setOn(true);
+        System.out.println("quat 1: " + fan1.toString());
+        System.out.println("quat 2: " + fan2.toString());
     }
 }

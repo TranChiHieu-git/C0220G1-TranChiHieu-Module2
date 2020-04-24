@@ -1,9 +1,9 @@
-package CaseStudy.FuramaResort.Controllers;
+package CaseStudy.FuramaResort.CustomerException;
 
-public class IdCardException extends Exception {
+public class EmailException extends Exception {
     private String message;
 
-    public IdCardException(String message) {
+    public EmailException(String message) {
         super(message);
         this.message = message;
     }

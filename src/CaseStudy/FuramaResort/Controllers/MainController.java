@@ -1,5 +1,7 @@
 package CaseStudy.FuramaResort.Controllers;
 
+import CaseStudy.FuramaResort.Commons.*;
+import CaseStudy.FuramaResort.CustomerException.*;
 import CaseStudy.FuramaResort.Models.*;
 
 import java.io.IOException;
@@ -27,7 +29,6 @@ public class MainController {
                 "8.Find Employee\n" +
                 "9.Exit");
         String choose;
-        boolean flag = true;
         do {
             System.out.print("Chọn chức năng bạn muốn sử dụng: ");
             choose = scanner.nextLine();
@@ -65,7 +66,6 @@ public class MainController {
                     this.displayMainMenu();
                     break;
                 case "9":
-                    flag = false;
                     System.exit(1);
                     break;
                 default:
@@ -73,7 +73,7 @@ public class MainController {
                     this.displayMainMenu();
                     break;
             }
-        } while (flag);
+        } while (true);
     }
 
     int i = 0;
@@ -168,7 +168,6 @@ public class MainController {
                 "4.Back to menu\n" +
                 "5.exit\n");
         String choose;
-        boolean flag = true;
         do {
             System.out.print("Chọn chức năng bạn muốn sử dụng: ");
             choose = scanner.nextLine();
@@ -189,7 +188,6 @@ public class MainController {
                     this.displayMainMenu();
                     break;
                 case "5":
-                    flag = false;
                     System.exit(1);
                     break;
                 default:
@@ -197,7 +195,7 @@ public class MainController {
                     this.addNewBook();
                     break;
             }
-        } while (flag);
+        } while (true);
     }
 
     public void addServicesVilla(Customer customer) throws IOException {
@@ -260,7 +258,7 @@ public class MainController {
         Scanner scanner = new Scanner(System.in);
         listRoom = readCsvRoom.readCsvRoom();
         for (int i = 0; i < listRoom.size(); i++) {
-            System.out.println((i + 1) + "." + listRoom.get(i).getId() + " | " + listRoom.get(i).getNameServices() + " | "
+            System.out.println((i + 1) + "." + listRoom.get(i).getId() + " | " + listRoom.get(i).getNameServices()
                     + " | " + listRoom.get(i).getRental() + " USD");
             System.out.println("-------------------------------------------------------------------------------------");
         }
@@ -291,7 +289,7 @@ public class MainController {
         String email = inputEmail();
         String typeOfCustomers = inputTypeOfCustomer();
         String address = inputAddress();
-        //Services typeOfServices = inputTypeOfServices();
+
         Customer customer = new Customer(name, birthDay, gender, cmnd, numberPhone, email, typeOfCustomers, address);
         listCustomer.add(customer);
         writeCsvCustomer.writeCsvCustomerFile(listCustomer);
@@ -452,7 +450,7 @@ public class MainController {
     public String inputNumberPhone() {
         Scanner scanner = new Scanner(System.in);
         boolean flag = true;
-        String numberPhone = "";
+        String numberPhone;
         do {
             System.out.print("So dien thoai khach hang: ");
             numberPhone = scanner.nextLine();
@@ -469,7 +467,7 @@ public class MainController {
 
     public String inputAddress() {
         Scanner scanner = new Scanner(System.in);
-        String address = "";
+        String address;
         System.out.print("Dia chi khach hang: ");
         address = scanner.nextLine();
         return address;
@@ -478,7 +476,7 @@ public class MainController {
     public String inputTypeOfCustomer() {
         Scanner scanner = new Scanner(System.in);
         boolean flag = true;
-        String typeOfCustomers = "";
+        String typeOfCustomers;
         do {
             System.out.print("Loai khach hang: ");
             typeOfCustomers = scanner.nextLine();
@@ -493,50 +491,6 @@ public class MainController {
         return typeOfCustomers;
     }
 
-    public Services inputTypeOfServices() throws IOException {
-        ReadCsvRoom readCsvRoom = new ReadCsvRoom();
-        ReadCsvHouse readCsvHouse = new ReadCsvHouse();
-        ReadCsvVilla readCsvVilla = new ReadCsvVilla();
-        Scanner scanner = new Scanner(System.in);
-        boolean flag = true;
-        Services typeOfServices = null;
-        do {
-            System.out.print("Loai dich vu(nhap vao ma dich vu): ");
-            String inputTypeOfServices = scanner.nextLine();
-            String key = inputTypeOfServices.charAt(0) + String.valueOf(inputTypeOfServices.charAt(1));
-            ArrayList<Villa> villaList = readCsvVilla.readCsvVilla();
-            ArrayList<House> houseList = readCsvHouse.readCsvHouse();
-            ArrayList<Room> roomList = readCsvRoom.readCsvRoom();
-            if (key.equals("VL")) {
-                for (Villa vl : villaList) {
-                    if (vl.getId().equals(inputTypeOfServices)) {
-                        typeOfServices = vl;
-                        flag = false;
-                    }
-                }
-            }
-            if (key.equals("HO")) {
-                for (House ho : houseList) {
-                    if (ho.getId().equals(inputTypeOfServices)) {
-                        typeOfServices = ho;
-                        flag = false;
-                    }
-                }
-            }
-            if (key.equals("RO")) {
-                for (Room ro : roomList) {
-                    if (ro.getId().equals(inputTypeOfServices)) {
-                        typeOfServices = ro;
-                        flag = false;
-                    }
-                }
-            }
-            System.out.println("Ma nhap vao khong chinh xac vui long nhap lai");
-        }
-        while (flag);
-        return typeOfServices;
-    }
-
     public void addNewServices() throws IOException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("1.Add New Villa\n" +
@@ -545,7 +499,6 @@ public class MainController {
                 "4.Back to menu\n" +
                 "5.Exit");
         String choose;
-        boolean flag = true;
         do {
             System.out.print("Chọn chức năng bạn muốn sử dụng: ");
             choose = scanner.nextLine();
@@ -566,7 +519,6 @@ public class MainController {
                     this.displayMainMenu();
                     break;
                 case "5":
-                    flag = false;
                     System.exit(0);
                     break;
                 default:
@@ -574,7 +526,7 @@ public class MainController {
                     this.addNewServices();
                     break;
             }
-        } while (flag);
+        } while (true);
     }
 
     public void addNewVilla() throws IOException {
@@ -646,7 +598,6 @@ public class MainController {
                 "7.Back to menu\n" +
                 "8.Exit\n");
         String choose;
-        boolean flag = true;
         do {
             System.out.print("Chọn chức năng bạn muốn sử dụng: ");
             choose = scanner.nextLine();
@@ -679,7 +630,6 @@ public class MainController {
                     this.displayMainMenu();
                     break;
                 case "8":
-                    flag = false;
                     System.exit(1);
                     break;
                 default:
@@ -687,7 +637,7 @@ public class MainController {
                     this.showServices();
                     break;
             }
-        } while (flag);
+        } while (true);
     }
 
     public void showAllVilla() throws IOException {
@@ -899,7 +849,7 @@ public class MainController {
     public String inputTypeOfRent() {
         Scanner scanner = new Scanner(System.in);
         boolean flag = true;
-        String typeOfRent = "";
+        String typeOfRent;
         do {
             System.out.print("Nhap vao kieu thue: ");
             typeOfRent = scanner.nextLine();
@@ -917,7 +867,7 @@ public class MainController {
     public String inputRoomStandard() {
         Scanner scanner = new Scanner(System.in);
         boolean flag = true;
-        String roomStandard = "";
+        String roomStandard;
         do {
             System.out.print("Nhap vao tieu chuan phong: ");
             roomStandard = scanner.nextLine();
@@ -963,6 +913,11 @@ public class MainController {
             System.out.println(i + "." + listRoom);
             System.out.println("------------------------------------------------------------------------");
         }
+    }
+
+    public static void main(String[] args) throws IOException {
+        MainController mainController = new MainController();
+        mainController.displayMainMenu();
     }
 }
 

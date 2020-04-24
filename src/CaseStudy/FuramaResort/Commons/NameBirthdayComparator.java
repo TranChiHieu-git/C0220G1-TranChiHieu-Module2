@@ -1,4 +1,4 @@
-package CaseStudy.FuramaResort.Controllers;
+package CaseStudy.FuramaResort.Commons;
 
 import CaseStudy.FuramaResort.Models.Customer;
 
@@ -8,8 +8,8 @@ public class NameBirthdayComparator implements Comparator<Customer> {
     public int compare(Customer ct1, Customer ct2) {
         String[] nameCustomer1 = ct1.getName().split(" ");
         String[] nameCustomer2 = ct2.getName().split(" ");
-        if (!nameCustomer1[2].equals(nameCustomer2[2])) {
-            return nameCustomer1[2].compareTo(nameCustomer2[2]);
+        if (!nameCustomer1[nameCustomer1.length - 1].equals(nameCustomer2[nameCustomer2.length - 1])) {
+            return nameCustomer1[nameCustomer1.length - 1].compareTo(nameCustomer2[nameCustomer2.length - 1]);
         } else if (!ct1.getName().equals(ct2.getName())) {
             return ct1.getName().compareTo(ct2.getName());
         } else {

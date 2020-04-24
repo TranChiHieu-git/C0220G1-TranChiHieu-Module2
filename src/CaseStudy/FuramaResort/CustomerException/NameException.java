@@ -1,4 +1,4 @@
-package CaseStudy.FuramaResort.Controllers;
+package CaseStudy.FuramaResort.CustomerException;
 
 public class NameException  extends  Exception{
 private String message;

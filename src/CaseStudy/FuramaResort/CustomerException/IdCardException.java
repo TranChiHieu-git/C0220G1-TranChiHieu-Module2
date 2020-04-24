@@ -1,9 +1,9 @@
-package CaseStudy.FuramaResort.Controllers;
+package CaseStudy.FuramaResort.CustomerException;
 
-public class GenderException extends Exception {
+public class IdCardException extends Exception {
     private String message;
 
-    public GenderException(String message) {
+    public IdCardException(String message) {
         super(message);
         this.message = message;
     }
