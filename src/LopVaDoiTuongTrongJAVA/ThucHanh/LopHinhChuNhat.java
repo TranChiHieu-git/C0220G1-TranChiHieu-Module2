@@ -25,6 +25,8 @@ public class LopHinhChuNhat {
     }
 
     public static void main(String[] args) {
+        Retangle retangle1 = new Retangle(10, 5);
+        Retangle retangle2 = new Retangle(10, 5);
         Scanner scanner = new Scanner(System.in);
         System.out.print("Nhap vao chieu rong: ");
         double width = scanner.nextDouble();

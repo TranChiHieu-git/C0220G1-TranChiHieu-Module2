@@ -17,6 +17,7 @@ public class MainController {
     TreeSet<String> listHouseNotDuplicate = new TreeSet<>();
     TreeSet<String> listVillaNotDuplicate = new TreeSet<>();
 
+    //----------------------main menu---------------------------------------------------------------------------------------
     public void displayMainMenu() throws IOException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("1.Add New Services\n" +
@@ -76,18 +77,20 @@ public class MainController {
         } while (true);
     }
 
+    //------------------book movie ticket-----------------------------------------------------------------------------------
     int i = 0;
-    Queue<String> listBookingMovieTicket = new ArrayDeque<>(10);
+    Queue<String> listBookingMovieTicket = new ArrayDeque<>(4);
 
     public void bookingMovieTicket4D() {
-
         i++;
         System.out.println("------------------------------------------------------------------------------------");
-        System.out.println("Khach hang " + (i));
+        System.out.println("Ten khach hang " + (i));
         String inputNameOfCustomer = inputName();
+        System.out.println("CMND khach hang " + (i));
+        String inputCMNDOfCustomer = inputCMND();
         System.out.println("------------------------------------------------------------------------------------");
-        listBookingMovieTicket.add(inputNameOfCustomer);
-        if (i > 9) {
+        listBookingMovieTicket.add(i + " ,Ho va ten: " + inputNameOfCustomer + ", So CMND: " + inputCMNDOfCustomer);
+        if (i > 3) {
             printListTicket(listBookingMovieTicket);
             i = 0;
         }
@@ -96,14 +99,13 @@ public class MainController {
     public void printListTicket(Queue<String> listBookingMovieTicket) {
         System.out.println("--------------------------------------------------------------------------");
         System.out.println("Danh sach khach hang dat ve: ");
-        int i = 0;
         while (listBookingMovieTicket.peek() != null) {
-            System.out.println((i + 1) + ". " + listBookingMovieTicket.remove());
-            i++;
+            System.out.println("Vi tri ghe: " + listBookingMovieTicket.remove());
         }
         System.out.println("--------------------------------------------------------------------------");
     }
 
+    //---------------------find infor employee by id------------------------------------------------------------------------
     public void findEmployee() throws IOException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("------------------------------------------------------------------------------------");
@@ -115,7 +117,7 @@ public class MainController {
         int count = 0;
         for (String employee : listInforEmployee) {
             String[] employeeInfor = employee.split("\\.");
-            if (employeeInfor[0].equals("ID: " + inputIdOfEmployee + " ")) {
+            if (employeeInfor[0].equals("Id: " + inputIdOfEmployee)) {
                 System.out.println(employee);
                 count++;
                 System.out.println("------------------------------------------------------------------------------------");
@@ -127,14 +129,16 @@ public class MainController {
         }
     }
 
+    //--------------------show infor employee-------------------------------------------------------------------------------
     public void showInformationOfEmployee() throws IOException {
         ReadCsvEmployee readCsvEmployee = new ReadCsvEmployee();
         Map<String, Employee> mapEmployee = readCsvEmployee.readCsvEmployee();
         for (Map.Entry<String, Employee> entry : mapEmployee.entrySet()) {
-            System.out.println("ID: " + entry.getKey() + " " + entry.getValue().toString());
+            System.out.println(entry.getValue().toString());
         }
     }
 
+    //-----------------------choose customer for booking--------------------------------------------------------------------
     public void addNewBook() throws IOException {
         ReadCsvCustomer readCsvCustomer = new ReadCsvCustomer();
         Scanner scanner = new Scanner(System.in);
@@ -160,6 +164,7 @@ public class MainController {
         newBook(customer);
     }
 
+    //------------------------menu choose services for booking----------------------------------------------------------------------------------
     public void newBook(Customer customer) throws IOException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("1.Booking Villa\n" +
@@ -198,6 +203,7 @@ public class MainController {
         } while (true);
     }
 
+    //-----------------------add new booking--------------------------------------------------------------------------------
     public void addServicesVilla(Customer customer) throws IOException {
         WriteCsvBooking writeCsvBooking = new WriteCsvBooking();
         ReadCsvVilla readCsvVilla = new ReadCsvVilla();
@@ -223,6 +229,7 @@ public class MainController {
         } while (flag);
         customer.setServices(services);
         writeCsvBooking.writeCsvBookingVillaFile(customer, services);
+        writeCsvBooking.ext();
     }
 
     public void addServicesHouse(Customer customer) throws IOException {
@@ -239,9 +246,9 @@ public class MainController {
         House services = null;
         boolean flag = true;
         do {
-            System.out.print("Chọn dich vu Villa muon book: ");
+            System.out.print("Chọn dich vu House muon book: ");
             choose = scanner.nextLine();
-            if (Integer.parseInt(choose) > 0 && Integer.parseInt(choose) <= listVilla.size()) {
+            if (Integer.parseInt(choose) > 0 && Integer.parseInt(choose) <= listHouse.size()) {
                 services = listHouse.get(Integer.parseInt(choose) - 1);
                 flag = false;
             } else {
@@ -250,6 +257,7 @@ public class MainController {
         } while (flag);
         customer.setServices(services);
         writeCsvBooking.writeCsvBookingHouseFile(customer, services);
+        writeCsvBooking.ext();
     }
 
     public void addServicesRoom(Customer customer) throws IOException {
@@ -266,9 +274,9 @@ public class MainController {
         Room services = null;
         boolean flag = true;
         do {
-            System.out.print("Chọn dich vu Villa muon book: ");
+            System.out.print("Chọn dich vu Room muon book: ");
             choose = scanner.nextLine();
-            if (Integer.parseInt(choose) > 0 && Integer.parseInt(choose) <= listVilla.size()) {
+            if (Integer.parseInt(choose) > 0 && Integer.parseInt(choose) <= listRoom.size()) {
                 services = listRoom.get(Integer.parseInt(choose) - 1);
                 flag = false;
             } else {
@@ -277,8 +285,10 @@ public class MainController {
         } while (flag);
         customer.setServices(services);
         writeCsvBooking.writeCsvBookingRoomFile(customer, services);
+        writeCsvBooking.ext();
     }
 
+    //---------------------------add new customer---------------------------------------------------------------------------
     public void addNewCustomer() throws IOException {
         WriteCsvCustomer writeCsvCustomer = new WriteCsvCustomer();
         String name = inputName();
@@ -296,6 +306,7 @@ public class MainController {
         writeCsvCustomer.ext();
     }
 
+    //---------------------show infor customer------------------------------------------------------------------------------
     public void showInformationCustomers() throws IOException {
         ReadCsvCustomer readCsvCustomer = new ReadCsvCustomer();
         listCustomer = readCsvCustomer.readCsvCustomer();
@@ -306,6 +317,7 @@ public class MainController {
         }
     }
 
+    //--------------------input information customer------------------------------------------------------------------------
     public String inputName() {
         Scanner scanner = new Scanner(System.in);
         boolean flag = true;
@@ -491,6 +503,7 @@ public class MainController {
         return typeOfCustomers;
     }
 
+    //----------------------menu add new services---------------------------------------------------------------------------
     public void addNewServices() throws IOException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("1.Add New Villa\n" +
@@ -529,6 +542,7 @@ public class MainController {
         } while (true);
     }
 
+    //---------------------add new services---------------------------------------------------------------------------------
     public void addNewVilla() throws IOException {
         WriteCsvVilla writeCsvVilla = new WriteCsvVilla();
         int i = 1;
@@ -587,6 +601,7 @@ public class MainController {
         writeCsvRoom.ext();
     }
 
+    //--------------------menu show services--------------------------------------------------------------------------------
     public void showServices() throws IOException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("1.Show all Villa\n" +
@@ -640,6 +655,7 @@ public class MainController {
         } while (true);
     }
 
+    //--------------------------show services-------------------------------------------------------------------------------
     public void showAllVilla() throws IOException {
         ReadCsvVilla readCsvVilla = new ReadCsvVilla();
         listVilla = readCsvVilla.readCsvVilla();
@@ -670,6 +686,7 @@ public class MainController {
         }
     }
 
+    //---------------------------input information services-----------------------------------------------------------------
     public String inputDescriptionOfOtherAmenities() {
         Scanner scanner = new Scanner(System.in);
         boolean flag = true;
@@ -882,6 +899,7 @@ public class MainController {
         return roomStandard;
     }
 
+    //---------------------show not duplicate services----------------------------------------------------------------------
     public void showAllNameVillaNotDuplicate() throws IOException {
         ReadCsvVilla readCsvVilla = new ReadCsvVilla();
         listVillaNotDuplicate = readCsvVilla.readCsvVillaNotDuplicate();
@@ -915,6 +933,7 @@ public class MainController {
         }
     }
 
+    //--------------------main----------------------------------------------------------------------------------------------
     public static void main(String[] args) throws IOException {
         MainController mainController = new MainController();
         mainController.displayMainMenu();

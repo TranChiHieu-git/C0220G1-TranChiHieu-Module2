@@ -12,7 +12,7 @@ public class TuHoSo {
         ReadCsvEmployee readCsvEmployee = new ReadCsvEmployee();
         Map<String, Employee> mapEmployee = readCsvEmployee.readCsvEmployee();
         for (Map.Entry<String, Employee> entry : mapEmployee.entrySet()) {
-            listEmployee.push("ID: " + entry.getKey() + " " + entry.getValue().toString());
+            listEmployee.push(entry.getValue().toString());
         }
         return listEmployee;
     }

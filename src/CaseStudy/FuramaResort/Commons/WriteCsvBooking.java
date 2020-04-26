@@ -11,7 +11,7 @@ public class WriteCsvBooking {
     FileWriter fileBooking = null;
 
     public void writeCsvBookingVillaFile(Customer customer, Villa services) throws IOException {
-        fileBooking = new FileWriter("C:\\codegym\\CodeGym\\Module2\\C0220G1-TranChiHieu-Module2\\src\\CaseStudy\\FuramaResort\\Data\\Booking.csv");
+        fileBooking = new FileWriter("C:\\codegym\\CodeGym\\Module2\\C0220G1-TranChiHieu-Module2\\src\\CaseStudy\\FuramaResort\\Data\\Booking.csv",true);
         fileBooking.append(customer.getName());
         fileBooking.append(DAU_PHAY);
         fileBooking.append(customer.getBirthday());
@@ -50,7 +50,7 @@ public class WriteCsvBooking {
     }
 
     public void writeCsvBookingHouseFile(Customer customer, House services) throws IOException {
-        fileBooking = new FileWriter("C:\\codegym\\CodeGym\\Module2\\C0220G1-TranChiHieu-Module2\\src\\CaseStudy\\FuramaResort\\Data\\Booking.csv");
+        fileBooking = new FileWriter("C:\\codegym\\CodeGym\\Module2\\C0220G1-TranChiHieu-Module2\\src\\CaseStudy\\FuramaResort\\Data\\Booking.csv",true);
         fileBooking.append(customer.getName());
         fileBooking.append(DAU_PHAY);
         fileBooking.append(customer.getBirthday());
@@ -87,7 +87,7 @@ public class WriteCsvBooking {
     }
 
     public void writeCsvBookingRoomFile(Customer customer, Room services) throws IOException {
-        fileBooking = new FileWriter("C:\\codegym\\CodeGym\\Module2\\C0220G1-TranChiHieu-Module2\\src\\CaseStudy\\FuramaResort\\Data\\Booking.csv");
+        fileBooking = new FileWriter("C:\\codegym\\CodeGym\\Module2\\C0220G1-TranChiHieu-Module2\\src\\CaseStudy\\FuramaResort\\Data\\Booking.csv",true);
         fileBooking.append(customer.getName());
         fileBooking.append(DAU_PHAY);
         fileBooking.append(customer.getBirthday());

@@ -13,26 +13,14 @@ public class ReadCsvEmployee {
                 "C0220G1-TranChiHieu-Module2\\src\\CaseStudy\\FuramaResort\\Data\\Employee.csv"));
         Map<String, Employee> mapEmployee = new TreeMap<>();
         ArrayList<Employee> listEmployee = new ArrayList<>();
-        ArrayList<String> listId = new ArrayList<>();
-        for (int i = 1; i < 11; i++) {
-            if (i < 10) {
-                listId.add("00" + i);
-            } else {
-                listId.add("0" + i);
-            }
-        }
         String line;
         while ((line = fileReader.readLine()) != null) {
             String[] splitData = line.split(",");
-            Employee employee = new Employee(splitData[0], Integer.parseInt(splitData[1]), splitData[2]);
+            Employee employee = new Employee(splitData[0],splitData[1], Integer.parseInt(splitData[2]), splitData[3]);
             listEmployee.add(employee);
         }
-
-        for (int i = 0; i < listEmployee.size(); i++) {
-            for (int j = i; j < listId.size(); j++) {
-                mapEmployee.put(listId.get(j), listEmployee.get(i));
-                break;
-            }
+        for (Employee employee: listEmployee){
+            mapEmployee.put(employee.getId(), employee);
         }
         return mapEmployee;
     }

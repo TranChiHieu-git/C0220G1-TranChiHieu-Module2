@@ -37,7 +37,6 @@ public class Fan {
     public void setColor(String value) {
         this.color = value;
     }
-
     public String toString() {
         String speed = "";
         switch (getSpeed()) {
