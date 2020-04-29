@@ -12,9 +12,7 @@ public class toString {
         fan2.setRadius(10);
         fan2.setColor("yellow");
         fan2.setOn(true);
-        System.out.println("quat 1: " + fan1);
-        System.out.println("quat 2: " + fan2);
-
-
+        System.out.println("quat 1: " + fan1.hashCode());
+        System.out.println("quat 2: " + fan2.hashCode());
     }
 }
