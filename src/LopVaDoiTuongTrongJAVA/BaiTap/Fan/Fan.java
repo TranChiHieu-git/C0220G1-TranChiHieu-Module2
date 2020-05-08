@@ -5,7 +5,6 @@ public class Fan {
     private boolean on = false;
     private double radius = 5;
     private String color = "blue";
-
     public int getSpeed() {
         return this.speed;
     }
@@ -37,7 +36,7 @@ public class Fan {
     public void setColor(String value) {
         this.color = value;
     }
-
+/*
     public String toString() {
         String speed = "";
         switch (getSpeed()) {
@@ -57,5 +56,5 @@ public class Fan {
         else
             on_off = "off";
         return "speed: " + speed + ", color: " + this.getColor() + ", radius: " + this.getRadius() + ", fan is " + on_off;
-    }
+    }*/
 }

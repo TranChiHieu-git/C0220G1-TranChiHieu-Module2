@@ -1,7 +1,6 @@
-drop database furama;
+-- drop database furama;
 -- *********************************************************** Tao CSDL ***************************************************************************
-create database furama;
-
+-- create database furama;
 -- ************************************************************Dich vu ****************************************************************************
 create table LoaiDichVu(
 IDLoaiDichVu int primary key,
@@ -376,14 +375,15 @@ order by HopDong.IDHopDong;
 
 select NhanVien.IDNhanVien, NhanVien.HoTen, TrinhDo.TrinhDo, BoPhan.TenBoPhan, NhanVien.SDT,NhanVien.DiaChi
 from NhanVien
-left join TrinhDo on TrinhDo.IDTrinhDo = NhanVien.IDTrinhDo
-right join BoPhan on BoPhan.IDBoPhan = NhanVien.IDBoPhan
-right Join HopDong on HopDong.IDNhanVien = NhanVien.IDNhanVien
-where HopDong.NgayLamHopDong >='2018-01-01' and HopDong.NgayLamHopDong <='2019-12-31'
+join TrinhDo on TrinhDo.IDTrinhDo = NhanVien.IDTrinhDo
+join BoPhan on BoPhan.IDBoPhan = NhanVien.IDBoPhan
+left Join HopDong on HopDong.IDNhanVien = NhanVien.IDNhanVien
+where (HopDong.NgayLamHopDong >='2018-01-01' and HopDong.NgayLamHopDong <='2019-12-31')
 group by NhanVien.IDNhanVien
-having count(HopDong.IDHopDong)<=3 
+having count(HopDong.IDHopDong) < 4 
 order by NhanVien.IDNhanVien;
 
+select * from NhanVien;
 -- ************************************************************* Yeu Cau 16 **************************************************************************
 -- Xóa những Nhân viên chưa từng lập được hợp đồng nào từ năm 2017 đến năm 2019.
 

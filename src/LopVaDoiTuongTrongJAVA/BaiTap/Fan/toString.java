@@ -1,5 +1,8 @@
 package LopVaDoiTuongTrongJAVA.BaiTap.Fan;
 
+import java.util.SortedSet;
+import java.util.TreeSet;
+
 public class toString {
     public static void main(String[] args) {
         Fan fan1 = new Fan();
