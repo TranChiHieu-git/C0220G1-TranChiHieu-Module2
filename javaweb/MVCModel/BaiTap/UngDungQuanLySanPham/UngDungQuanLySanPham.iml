@@ -20,19 +20,19 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="Tomcat 9.0.34" level="application_server_libraries" />
-    <orderEntry type="module-library" exported="">
+    <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../apache-tomcat-9.0.34/webapps/examples/WEB-INF/lib/taglibs-standard-impl-1.2.5.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../../../../../../Program Files/Apache Software Foundation/Tomcat 9.0/webapps/examples/WEB-INF/lib/taglibs-standard-impl-1.2.5.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library" exported="">
+    <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../apache-tomcat-9.0.34/webapps/examples/WEB-INF/lib/taglibs-standard-spec-1.2.5.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../../../../../../Program Files/Apache Software Foundation/Tomcat 9.0/webapps/examples/WEB-INF/lib/taglibs-standard-spec-1.2.5.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
