@@ -6,6 +6,7 @@
 </head>
 <body>
 <a href="/create">Create new customer</a>
+<a href="/provincelist">Go to Province</a>
 <h1>Customers</h1>
 <th:block th:if="${message}">
     <p th:text="${message}"></p>
@@ -14,13 +15,17 @@
     <tr>
         <th>First name</th>
         <th>Last name</th>
+        <th>Province</th>
+        <th>Edit</th>
+        <th>Delete</th>
     </tr>
-    <th:block th:each="ct : ${customer}">
+    <th:block th:each="customers : ${customer}">
         <tr>
-            <td th:text="${ct.firstName}"></td>
-            <td th:text="${ct.lastName}"></td>
-            <td><a th:href="@{/edit/__${ct.id}__ }">Edit</a></td>
-            <td><a th:href="@{/delete/__${ct.id}__ }">Delete</a></td>
+            <td th:text="${customers.firstName}"></td>
+            <td th:text="${customers.lastName}"></td>
+            <td th:text="${customers.getProvince().getName()}"></td>
+            <td><a th:href="@{/edit/__${customers.id}__ }">Edit</a></td>
+            <td><a th:href="@{/delete/__${customers.id}__ }">Delete</a></td>
         </tr>
     </th:block>
 </table>

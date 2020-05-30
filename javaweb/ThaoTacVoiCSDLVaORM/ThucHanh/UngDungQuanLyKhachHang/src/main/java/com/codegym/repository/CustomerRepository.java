@@ -1,4 +1,5 @@
 package com.codegym.repository;
+import com.codegym.model.Customer;
 
-public class CustomerRepository {
+public interface CustomerRepository extends Repository<Customer> {
 }

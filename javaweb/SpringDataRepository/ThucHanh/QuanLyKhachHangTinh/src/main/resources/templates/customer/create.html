@@ -7,17 +7,25 @@
 <body>
 <h1>Create customer</h1>
 <p>
-    <a href="/">Customer list</a>
+    <a href="/customers">Customer list</a>
 </p>
-<form th:action="@{/created}" method="post">
+<form th:action="@{/created}" th:object="${customer}" method="post">
     <table>
         <tr>
             <td>First name:</td>
-            <td><input type="text" th:name="firstname"/></td>
+            <td><input type="text" th:field="*{firstName}"/></td>
         </tr>
         <tr>
             <td>Last name:</td>
-            <td><input type="text" th:name="lastname"/></td>
+            <td><input type="text" th:field="*{lastName}"/></td>
+        </tr>
+        <tr>
+            <td>Province:</td>
+            <td>
+                <select th:field="*{province}">
+                    <option th:each="p : ${provinces}" th:value="${p.id}" th:text="${p.name}"></option>
+                </select>
+            </td>
         </tr>
         <tr>
             <td></td>

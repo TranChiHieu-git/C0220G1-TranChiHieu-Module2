@@ -7,17 +7,35 @@ import javax.persistence.*;
 public class Customer {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String firstName;
     private String lastName;
+    @ManyToOne
+    @JoinColumn(name = "province_id")
+    private Province province;
 
-    public Customer() {}
+    public Province getProvince() {
+        return province;
+    }
 
-    public Customer(String firstName, String lastName) {
+    public void setProvince(Province province) {
+        this.province = province;
+    }
+
+    public Customer() {
+    }
+
+    public Customer(String firstName, String lastName, Long id) {
         this.firstName = firstName;
         this.lastName = lastName;
+    }
+
+    public Customer(String firstName, String lastName, Province province) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.province = province;
     }
 
     @Override
@@ -48,4 +66,6 @@ public class Customer {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+
 }

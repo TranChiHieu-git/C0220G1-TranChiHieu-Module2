@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Furama Resort Đà Nẵng - Admin site</title>
+</head>
+<header th:replace="admin/layout::header"></header>
+<body>
+<div style="width: 1100px;height: auto ;position: absolute;left: 260px; top:158px">
+    <fieldset style="height: 367px">
+        <table th:switch="${message}">
+            <td th:case="1">
+                <form th:action="@{/admin/nhanvien}">
+                    <input th:name="keyword" placeholder="Tìm kiếm nhân viên"/>
+                    <input type="submit" value="Tìm kiếm"/>
+                </form>
+                <a style="position: absolute;right: 20px; top: 12px" href="/admin/nhanvien/add">Thêm Nhân Viên</a>
+                <br>
+                <table border="1" cellspacing="0" cellpadding="3">
+                    <tr>
+                        <th width="50">Mã số nhân viên</th>
+                        <th width="260">Họ Tên</th>
+                        <th width="150">Vị Trí</th>
+                        <th width="150">Bộ Phận</th>
+                        <th width="150">Ngày Sinh</th>
+                        <th width="100">CMND</th>
+                        <th width="100">Chỉnh Sửa</th>
+                        <th width="50">Xóa</th>
+                    </tr>
+                    <tr th:each="l:${listStaff}">
+                        <th width="130" th:text="${l.id}"></th>
+                        <th width="260"><a th:href="@{/admin/nhanvien/read/__${l.id}__}" th:text="${l.name}"></a></th>
+                        <th width="120" th:text="${l.getPosition().namePosition}"></th>
+                        <th width="120" th:text="${l.getPart().namePart}"></th>
+                        <th width="120" th:text="${l.dayOfBirth}"></th>
+                        <th width="100" th:text="${l.numberOfCMND}"></th>
+                        <th width="100"><a th:href="@{/admin/nhanvien/edit/__${l.id}__}">Chỉnh Sửa</a></th>
+                        <th width="50"><a th:href="@{/admin/nhanvien/delete/__${l.id}__}">Xóa</a></th>
+                    </tr>
+                </table>
+                <div style="position: absolute;bottom: 10px;right: 20px">
+                    <a th:href="@{/admin/nhanvien/(page=${0}, keyword=${keyword})}"
+                       th:if="${listStaff.hasPrevious()}"> Trang Đầu | </a>
+                    <a th:href="@{/admin/nhanvien/(page=${listStaff.number - 1}, keyword=${keyword})}"
+                       th:if="${listStaff.hasPrevious()}"> Trang Trước |</a>
+                    <span th:text="${listStaff.number + 1}"></span> - <span
+                        th:text="${listStaff.totalPages}"></span>
+                    <a th:href="@{/admin/nhanvien/(page=${listStaff.number + 1}, keyword=${keyword})}"
+                       th:if="${listStaff.hasNext()}">| Trang sau </a>
+                    <a th:href="@{/admin/nhanvien/(page=${listStaff.totalPages - 1}, keyword=${keyword})}"
+                       th:if="${listStaff.hasNext()}">| Trang Cuối </a>
+                </div>
+            </td>
+        </table>
+    </fieldset>
+</div>
+<footer th:replace="admin/layout::footer"></footer>
+</body>
+</html>

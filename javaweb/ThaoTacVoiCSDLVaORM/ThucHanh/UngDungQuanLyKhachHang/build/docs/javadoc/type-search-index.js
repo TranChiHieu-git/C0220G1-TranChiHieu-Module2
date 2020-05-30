@@ -1,1 +1,0 @@
-typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"com.codegym.cms","l":"ApplicationConfig"},{"p":"com.codegym.cms","l":"ApplicationInitializer"}]

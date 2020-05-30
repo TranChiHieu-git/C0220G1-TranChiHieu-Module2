@@ -3,7 +3,7 @@ plugins {
     id 'war'
 }
 
-group 'com.codegym'
+group 'org.example'
 version '1.0-SNAPSHOT'
 
 repositories {
